@@ -83,6 +83,11 @@ export class UsersService {
           accessToken: token,
         },
       };
+    } else {
+      throw new HttpException(
+        'Username or Password Invalid',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
   }
 }
