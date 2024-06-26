@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import { Users } from './entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { UsersValidation } from './users.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
@@ -10,6 +11,7 @@ import {
   SignInUsersDtoResponse,
   SignUpUsersDtoRequest,
   SignUpUsersDtoResponse,
+  UpdatePasswordDtoRequest,
   UsersDtoResponse,
 } from './dto/users.dto';
 
@@ -105,6 +107,32 @@ export class UsersService {
         username: dataUser.username,
         role: dataUser.role,
       },
+    };
+  }
+
+  public async updatePassword(
+    user: Users,
+    req: UpdatePasswordDtoRequest,
+  ): Promise<WebResponse> {
+    const updateRequest = this.validationService.validate(
+      UsersValidation.UPDATE,
+      req,
+    );
+
+    const findUser = await this.entityManager.findOne(Users, {
+      where: { id: user.id },
+    });
+
+    if (findUser.password) {
+      user.password = await bcrypt.hash(updateRequest.password, 12);
+    }
+
+    await this.entityManager.update(Users, findUser.id, {
+      password: user.password,
+    });
+
+    return {
+      message: 'Password updated',
     };
   }
 }

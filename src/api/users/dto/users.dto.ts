@@ -24,3 +24,7 @@ export class UsersDtoResponse {
   username: string;
   role: string;
 }
+
+export class UpdatePasswordDtoRequest {
+  password: string;
+}
