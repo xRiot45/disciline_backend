@@ -1,4 +1,4 @@
-import { Users } from 'src/api/users/entities/user.entity';
+import { Users } from '../../api/users/entities/user.entity';
 import { EntityManager } from 'typeorm';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';

@@ -1,10 +1,10 @@
 import * as bcrypt from 'bcrypt';
 import { Users } from './entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { UsersValidation } from './users.validation';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
   SignInUsersDtoRequest,

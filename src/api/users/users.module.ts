@@ -1,12 +1,12 @@
 import { Users } from './entities/user.entity';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from 'src/common/strategy/jwt.strategy';
+import { JwtStrategy } from '../../common/strategy/jwt.strategy';
 import { UsersService } from './users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PassportModule } from '@nestjs/passport';
 import { UsersController } from './users.controller';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 
 @Module({
   exports: [JwtStrategy, JwtModule],

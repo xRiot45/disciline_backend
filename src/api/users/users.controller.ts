@@ -1,8 +1,8 @@
 import { Users } from './entities/user.entity';
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { AuthGuard } from '../../common/guard/auth.guard';
+import { WebResponse } from '../../common/dto/web.dto';
 import { UsersService } from './users.service';
-import { AuthDecorator } from 'src/common/decorator/auth.decorator';
+import { AuthDecorator } from '../../common/decorator/auth.decorator';
 import {
   Controller,
   Post,
