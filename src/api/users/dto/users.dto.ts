@@ -18,3 +18,9 @@ export class SignInUsersDtoRequest {
 export class SignInUsersDtoResponse {
   accessToken: string;
 }
+
+export class UsersDtoResponse {
+  id: string;
+  username: string;
+  role: string;
+}

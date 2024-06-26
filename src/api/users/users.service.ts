@@ -10,6 +10,7 @@ import {
   SignInUsersDtoResponse,
   SignUpUsersDtoRequest,
   SignUpUsersDtoResponse,
+  UsersDtoResponse,
 } from './dto/users.dto';
 
 @Injectable()
@@ -89,5 +90,21 @@ export class UsersService {
         HttpStatus.UNAUTHORIZED,
       );
     }
+  }
+
+  public async getUser(user: Users): Promise<{ data: UsersDtoResponse }> {
+    const dataUser = await this.entityManager.findOne(Users, {
+      where: {
+        id: user.id,
+      },
+    });
+
+    return {
+      data: {
+        id: dataUser.id.toString(),
+        username: dataUser.username,
+        role: dataUser.role,
+      },
+    };
   }
 }

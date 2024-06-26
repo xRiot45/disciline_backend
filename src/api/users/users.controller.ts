@@ -1,10 +1,14 @@
+import { Users } from './entities/user.entity';
+import { AuthGuard } from 'src/common/guard/auth.guard';
 import { UsersService } from './users.service';
-import { Controller, Post, Body } from '@nestjs/common';
+import { AuthDecorator } from 'src/common/decorator/auth.decorator';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import {
   SignInUsersDtoRequest,
   SignInUsersDtoResponse,
   SignUpUsersDtoRequest,
   SignUpUsersDtoResponse,
+  UsersDtoResponse,
 } from './dto/users.dto';
 
 @Controller('/api/users')
@@ -23,5 +27,13 @@ export class UsersController {
     @Body() req: SignInUsersDtoRequest,
   ): Promise<{ data: SignInUsersDtoResponse }> {
     return this.usersService.signIn(req);
+  }
+
+  @Get()
+  @UseGuards(AuthGuard)
+  public async getUsers(
+    @AuthDecorator() user: Users,
+  ): Promise<{ data: UsersDtoResponse }> {
+    return this.usersService.getUser(user);
   }
 }
