@@ -5,7 +5,12 @@ import { EntityManager } from 'typeorm';
 import { UsersValidation } from './users.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { SignUpUsersDtoRequest, SignUpUsersDtoResponse } from './dto/users.dto';
+import {
+  SignInUsersDtoRequest,
+  SignInUsersDtoResponse,
+  SignUpUsersDtoRequest,
+  SignUpUsersDtoResponse,
+} from './dto/users.dto';
 
 @Injectable()
 export class UsersService {
@@ -49,5 +54,35 @@ export class UsersService {
         role: signupUsers.role,
       },
     };
+  }
+
+  public async signIn(
+    req: SignInUsersDtoRequest,
+  ): Promise<{ data: SignInUsersDtoResponse }> {
+    const signinRequest = this.validationService.validate(
+      UsersValidation.SIGNIN,
+      req,
+    );
+
+    const user = await this.entityManager.findOne(Users, {
+      where: {
+        username: signinRequest.username,
+      },
+    });
+
+    if (user && (await bcrypt.compare(signinRequest.password, user.password))) {
+      const payload = {
+        id: user.id,
+        username: user.username,
+        role: user.role,
+      };
+
+      const token = this.jwtService.sign(payload);
+      return {
+        data: {
+          accessToken: token,
+        },
+      };
+    }
   }
 }

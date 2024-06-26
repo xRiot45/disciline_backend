@@ -9,3 +9,12 @@ export class SignUpUsersDtoResponse {
   username: string;
   role: string;
 }
+
+export class SignInUsersDtoRequest {
+  username: string;
+  password: string;
+}
+
+export class SignInUsersDtoResponse {
+  accessToken: string;
+}

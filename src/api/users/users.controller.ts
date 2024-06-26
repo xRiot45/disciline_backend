@@ -1,6 +1,11 @@
 import { UsersService } from './users.service';
 import { Controller, Post, Body } from '@nestjs/common';
-import { SignUpUsersDtoRequest, SignUpUsersDtoResponse } from './dto/users.dto';
+import {
+  SignInUsersDtoRequest,
+  SignInUsersDtoResponse,
+  SignUpUsersDtoRequest,
+  SignUpUsersDtoResponse,
+} from './dto/users.dto';
 
 @Controller('/api/users')
 export class UsersController {
@@ -8,8 +13,15 @@ export class UsersController {
 
   @Post('/signup')
   public async signUp(
-    @Body() signUpUserDtoRequest: SignUpUsersDtoRequest,
+    @Body() req: SignUpUsersDtoRequest,
   ): Promise<{ data: SignUpUsersDtoResponse }> {
-    return this.usersService.signUp(signUpUserDtoRequest);
+    return this.usersService.signUp(req);
+  }
+
+  @Post('/signin')
+  public async signIn(
+    @Body() req: SignInUsersDtoRequest,
+  ): Promise<{ data: SignInUsersDtoResponse }> {
+    return this.usersService.signIn(req);
   }
 }
