@@ -3,7 +3,15 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { WebResponse } from 'src/common/dto/web.dto';
 import { UsersService } from './users.service';
 import { AuthDecorator } from 'src/common/decorator/auth.decorator';
-import { Controller, Post, Body, Get, UseGuards, Put } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  UseGuards,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import {
   SignInUsersDtoRequest,
   SignInUsersDtoResponse,
@@ -46,5 +54,11 @@ export class UsersController {
     @Body() req: UpdatePasswordDtoRequest,
   ): Promise<WebResponse> {
     return this.usersService.updatePassword(user, req);
+  }
+
+  @Delete('/signout')
+  @UseGuards(AuthGuard)
+  async signOut(@AuthDecorator() user: Users): Promise<WebResponse> {
+    return await this.usersService.signOut(user);
   }
 }

@@ -135,4 +135,18 @@ export class UsersService {
       message: 'Password updated',
     };
   }
+
+  public async signOut(user: Users): Promise<WebResponse> {
+    const signOutRequest = await this.entityManager.findOne(Users, {
+      where: { id: user.id },
+    });
+
+    if (!signOutRequest) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      message: 'Sign out success',
+    };
+  }
 }
