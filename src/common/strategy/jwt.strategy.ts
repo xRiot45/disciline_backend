@@ -1,4 +1,4 @@
-// import { User } from 'src/api/users/entities/user.entity';
+import { Users } from 'src/api/users/entities/user.entity';
 import { EntityManager } from 'typeorm';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -13,16 +13,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  //   public async validate(payload: any): Promise<any> {
-  //     const { username } = payload;
-  //     const user = await this.entityManager.findOne(User, {
-  //       where: { username },
-  //     });
+  public async validate(payload: any): Promise<any> {
+    const { username } = payload;
+    const user = await this.entityManager.findOne(Users, {
+      where: { username },
+    });
 
-  //     if (!user) {
-  //       throw new UnauthorizedException();
-  //     }
+    if (!user) {
+      throw new UnauthorizedException();
+    }
 
-  //     return user;
-  //   }
+    return user;
+  }
 }
