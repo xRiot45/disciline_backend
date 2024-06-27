@@ -54,4 +54,23 @@ export class StatusService {
       })),
     };
   }
+
+  public async findById(statusId: string): Promise<{ data: StatusResponse }> {
+    const status = await this.entityManager.findOne(Status, {
+      where: {
+        id: statusId,
+      },
+    });
+
+    if (!status) {
+      throw new HttpException('Status not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: status.id,
+        nama_status: status.nama_status,
+      },
+    };
+  }
 }
