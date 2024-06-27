@@ -39,4 +39,15 @@ export class AgamaService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: AgamaResponse[] }> {
+    const agama = await this.entityManager.find(Agama);
+
+    return {
+      data: agama.map((agama) => ({
+        id: agama.id,
+        nama_agama: agama.nama_agama,
+      })),
+    };
+  }
 }
