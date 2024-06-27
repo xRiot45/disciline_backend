@@ -109,17 +109,16 @@ export class GuruService {
         nama_lengkap: item.nama_lengkap,
         nip: item.nip,
         status: {
-          nama_status: (item.statusId as unknown as Status)?.nama_status,
+          nama_status: item.statusId ? item.statusId.nama_status : null,
         },
         jabatan: {
-          nama_jabatan: (item.jabatanId as unknown as Jabatan)?.nama_jabatan,
+          nama_jabatan: item.jabatanId ? item.jabatanId.nama_jabatan : null,
         },
         golongan: {
-          nama_golongan: (item.golonganId as unknown as Golongan)
-            ?.nama_golongan,
+          nama_golongan: item.golonganId ? item.golonganId.nama_golongan : null,
         },
         agama: {
-          nama_agama: (item.agamaId as unknown as Agama)?.nama_agama,
+          nama_agama: item.agamaId ? item.agamaId.nama_agama : null,
         },
         jenis_kelamin: item.jenis_kelamin,
         no_telp: item.no_telp,
@@ -147,17 +146,16 @@ export class GuruService {
         nama_lengkap: guru.nama_lengkap,
         nip: guru.nip,
         status: {
-          nama_status: (guru.statusId as unknown as Status)?.nama_status,
+          nama_status: guru.statusId ? guru.statusId.nama_status : null,
         },
         jabatan: {
-          nama_jabatan: (guru.jabatanId as unknown as Jabatan)?.nama_jabatan,
+          nama_jabatan: guru.jabatanId ? guru.jabatanId.nama_jabatan : null,
         },
         golongan: {
-          nama_golongan: (guru.golonganId as unknown as Golongan)
-            ?.nama_golongan,
+          nama_golongan: guru.golonganId ? guru.golonganId.nama_golongan : null,
         },
         agama: {
-          nama_agama: (guru.agamaId as unknown as Agama)?.nama_agama,
+          nama_agama: guru.agamaId ? guru.agamaId.nama_agama : null,
         },
         jenis_kelamin: guru.jenis_kelamin,
         no_telp: guru.no_telp,

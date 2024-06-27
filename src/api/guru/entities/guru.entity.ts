@@ -35,19 +35,19 @@ export class Guru {
 
   @ManyToOne(() => Status, (status) => status.id, { eager: true })
   @JoinColumn({ name: 'statusId' })
-  statusId: string;
+  statusId: Status;
 
   @ManyToOne(() => Jabatan, (jabatan) => jabatan.id, { eager: true })
   @JoinColumn({ name: 'jabatanId' })
-  jabatanId: string;
+  jabatanId: Jabatan;
 
   @ManyToOne(() => Golongan, (golongan) => golongan.id, { eager: true })
   @JoinColumn({ name: 'golonganId' })
-  golonganId: string;
+  golonganId: Golongan;
 
   @ManyToOne(() => Agama, (agama) => agama.id, { eager: true })
   @JoinColumn({ name: 'agamaId' })
-  agamaId: string;
+  agamaId: Agama;
 
   @Column({
     type: 'varchar',
