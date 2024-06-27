@@ -39,4 +39,19 @@ export class StatusService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: StatusResponse[] }> {
+    const statuses = await this.entityManager.find(Status, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: statuses.map((status) => ({
+        id: status.id,
+        nama_status: status.nama_status,
+      })),
+    };
+  }
 }
