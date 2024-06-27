@@ -1,7 +1,9 @@
+import { Guru } from 'src/api/guru/entities/guru.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -30,6 +32,9 @@ export class Jabatan {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   updatedAt: Date;
+
+  @OneToMany(() => Guru, (guru) => guru.jabatanId)
+  guru: Guru[];
 
   constructor(partial: Partial<Jabatan>) {
     Object.assign(this, partial);
