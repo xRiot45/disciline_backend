@@ -56,4 +56,25 @@ export class GolonganService {
       })),
     };
   }
+
+  public async findById(
+    golonganId: string,
+  ): Promise<{ data: GolonganResponse }> {
+    const golongan = await this.entityManager.findOne(Golongan, {
+      where: {
+        id: golonganId,
+      },
+    });
+
+    if (!golongan) {
+      throw new HttpException('Golongan not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: golongan.id,
+        nama_golongan: golongan.nama_golongan,
+      },
+    };
+  }
 }
