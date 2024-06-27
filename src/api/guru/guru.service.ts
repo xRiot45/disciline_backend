@@ -1,13 +1,13 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { EntityManager } from 'typeorm';
-import { ValidationService } from 'src/common/validation/validation.service';
-import { GuruRequest, GuruResponse } from './dto/guru.dto';
-import { GuruValidation } from './guru.validation';
 import { Guru } from './entities/guru.entity';
+import { Agama } from '../master/agama/entities/agama.entity';
 import { Status } from '../master/status/entities/status.entity';
 import { Jabatan } from '../master/jabatan/entities/jabatan.entity';
 import { Golongan } from '../master/golongan/entities/golongan.entity';
-import { Agama } from '../master/agama/entities/agama.entity';
+import { EntityManager } from 'typeorm';
+import { GuruValidation } from './guru.validation';
+import { ValidationService } from 'src/common/validation/validation.service';
+import { GuruRequest, GuruResponse } from './dto/guru.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class GuruService {
@@ -93,5 +93,39 @@ export class GuruService {
         alamat: savedGuru.alamat,
       },
     };
+  }
+
+  public async findAll(): Promise<{ data: GuruResponse[] }> {
+    const guru = await this.entityManager.find(Guru, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    const data: GuruResponse[] = guru.map((item) => {
+      return {
+        id: item.id,
+        nama_lengkap: item.nama_lengkap,
+        nip: item.nip,
+        status: {
+          nama_status: (item.statusId as unknown as Status)?.nama_status,
+        },
+        jabatan: {
+          nama_jabatan: (item.jabatanId as unknown as Jabatan)?.nama_jabatan,
+        },
+        golongan: {
+          nama_golongan: (item.golonganId as unknown as Golongan)
+            ?.nama_golongan,
+        },
+        agama: {
+          nama_agama: (item.agamaId as unknown as Agama)?.nama_agama,
+        },
+        jenis_kelamin: item.jenis_kelamin,
+        no_telp: item.no_telp,
+        alamat: item.alamat,
+      };
+    });
+
+    return { data: data };
   }
 }
