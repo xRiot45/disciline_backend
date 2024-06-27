@@ -53,4 +53,23 @@ export class JabatanService {
       })),
     };
   }
+
+  public async findById(jabatanId: string): Promise<{ data: JabatanResponse }> {
+    const jabatan = await this.entityManager.findOne(Jabatan, {
+      where: {
+        id: jabatanId,
+      },
+    });
+
+    if (!jabatan) {
+      throw new HttpException('Jabatan not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: jabatan.id,
+        nama_jabatan: jabatan.nama_jabatan,
+      },
+    };
+  }
 }

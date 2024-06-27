@@ -2,7 +2,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { JabatanService } from './jabatan.service';
 import { JabatanRequest, JabatanResponse } from './dto/jabatan.dto';
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
 
 @Controller('/api/master/jabatan')
 export class JabatanController {
@@ -20,5 +20,13 @@ export class JabatanController {
   @UseGuards(AuthGuard, AdminGuard)
   public async findAll(): Promise<{ data: JabatanResponse[] }> {
     return this.jabatanService.findAll();
+  }
+
+  @Get('/:jabatanId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async findById(
+    @Param('jabatanId') jabatanId: string,
+  ): Promise<{ data: JabatanResponse }> {
+    return this.jabatanService.findById(jabatanId);
   }
 }
