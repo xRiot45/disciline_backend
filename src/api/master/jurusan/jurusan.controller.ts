@@ -1,5 +1,6 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { JurusanService } from './jurusan.service';
 import { JurusanRequest, JurusanResponse } from './dto/jurusan.dto';
 import {
@@ -10,6 +11,7 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
 
 @Controller('/api/master/jurusan')
@@ -45,5 +47,13 @@ export class JurusanController {
     @Body() req: JurusanRequest,
   ): Promise<{ data: JurusanResponse }> {
     return this.jurusanService.update(jurusanId, req);
+  }
+
+  @Delete('/:jurusanId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(
+    @Param('jurusanId') jurusanId: string,
+  ): Promise<WebResponse> {
+    return this.jurusanService.delete(jurusanId);
   }
 }

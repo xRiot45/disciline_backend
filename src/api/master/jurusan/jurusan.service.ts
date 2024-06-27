@@ -1,4 +1,5 @@
 import { Jurusan } from './entities/jurusan.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { JurusanValidation } from './jurusan.validation';
@@ -115,6 +116,23 @@ export class JurusanService {
         id: updatedJurusan.id,
         nama_jurusan: updatedJurusan.nama_jurusan,
       },
+    };
+  }
+
+  public async delete(jurusanId: string): Promise<WebResponse> {
+    const jurusan = await this.entityManager.findOne(Jurusan, {
+      where: {
+        id: jurusanId,
+      },
+    });
+
+    if (!jurusan) {
+      throw new HttpException('Jurusan not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Jurusan, jurusan.id);
+    return {
+      message: 'Jurusan deleted successfully!',
     };
   }
 }
