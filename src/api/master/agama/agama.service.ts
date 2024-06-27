@@ -50,4 +50,23 @@ export class AgamaService {
       })),
     };
   }
+
+  public async findById(agamaId: string): Promise<{ data: AgamaResponse }> {
+    const agama = await this.entityManager.findOne(Agama, {
+      where: {
+        id: agamaId,
+      },
+    });
+
+    if (!agama) {
+      throw new HttpException('Agama not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: agama.id,
+        nama_agama: agama.nama_agama,
+      },
+    };
+  }
 }
