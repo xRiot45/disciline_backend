@@ -6,6 +6,7 @@ import { JabatanModule } from './master/jabatan/jabatan.module';
 import { GolonganModule } from './master/golongan/golongan.module';
 import { TipePelanggaranModule } from './master/tipe-pelanggaran/tipe-pelanggaran.module';
 import { PendidikanModule } from './master/pendidikan/pendidikan.module';
+import { JurusanModule } from './master/jurusan/jurusan.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { PendidikanModule } from './master/pendidikan/pendidikan.module';
     JabatanModule,
     GolonganModule,
     PendidikanModule,
+    JurusanModule,
   ],
 })
 export class ApiModule {}
