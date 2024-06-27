@@ -1,7 +1,15 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { TipePelanggaranService } from './tipe-pelanggaran.service';
-import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Get,
+  Param,
+  Put,
+} from '@nestjs/common';
 import {
   TipePelanggaranRequest,
   TipePelanggaranResponse,
@@ -33,5 +41,14 @@ export class TipePelanggaranController {
     @Param('tipePelanggaranId') tipePelanggaranId: string,
   ): Promise<{ data: TipePelanggaranResponse }> {
     return this.tipePelanggaranService.findById(tipePelanggaranId);
+  }
+
+  @Put('/:tipePelanggaranId')
+  @UseGuards(AdminGuard, AuthGuard)
+  public async update(
+    @Param('tipePelanggaranId') tipePelanggaranId: string,
+    @Body() req: TipePelanggaranRequest,
+  ): Promise<{ data: TipePelanggaranResponse }> {
+    return this.tipePelanggaranService.update(tipePelanggaranId, req);
   }
 }

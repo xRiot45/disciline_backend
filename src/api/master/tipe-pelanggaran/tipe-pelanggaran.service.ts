@@ -89,4 +89,68 @@ export class TipePelanggaranService {
       },
     };
   }
+
+  public async update(
+    tipePelanggaranId: string,
+    req: TipePelanggaranRequest,
+  ): Promise<{ data: TipePelanggaranResponse }> {
+    const updateRequest = this.validationService.validate(
+      TipePelanggaranValidation.UPDATE,
+      req,
+    );
+
+    const tipePelanggaran = await this.entityManager.findOne(TipePelanggaran, {
+      where: {
+        id: tipePelanggaranId,
+      },
+    });
+
+    if (!tipePelanggaran) {
+      throw new HttpException(
+        'Tipe Pelanggaran not found',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    const tipePelanggaranWithSameName = await this.entityManager.findOne(
+      TipePelanggaran,
+      {
+        where: {
+          nama_tipe_pelanggaran: updateRequest.nama_tipe_pelanggaran,
+        },
+      },
+    );
+
+    if (
+      tipePelanggaranWithSameName &&
+      tipePelanggaranWithSameName.id !== tipePelanggaran.id
+    ) {
+      throw new HttpException(
+        'Tipe Pelanggaran already exists',
+        HttpStatus.CONFLICT,
+      );
+    }
+
+    await this.entityManager.update(
+      TipePelanggaran,
+      tipePelanggaran.id,
+      updateRequest,
+    );
+
+    const updatedTipePelanggaran = await this.entityManager.findOne(
+      TipePelanggaran,
+      {
+        where: {
+          id: tipePelanggaran.id,
+        },
+      },
+    );
+
+    return {
+      data: {
+        id: updatedTipePelanggaran.id,
+        nama_tipe_pelanggaran: updatedTipePelanggaran.nama_tipe_pelanggaran,
+      },
+    };
+  }
 }
