@@ -1,5 +1,6 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { StatusService } from './status.service';
 import { StatusRequest, StatusResponse } from './dto/status.dto';
 import {
@@ -10,6 +11,7 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
 
 @Controller('/api/master/status')
@@ -45,5 +47,13 @@ export class StatusController {
     @Body() req: StatusRequest,
   ): Promise<{ data: StatusResponse }> {
     return this.statusService.update(statusId, req);
+  }
+
+  @Delete('/:statusId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(
+    @Param('statusId') statusId: string,
+  ): Promise<WebResponse> {
+    return this.statusService.delete(statusId);
   }
 }

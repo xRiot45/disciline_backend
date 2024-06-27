@@ -1,4 +1,5 @@
 import { Status } from './entities/status.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { StatusValidation } from './status.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
@@ -115,6 +116,23 @@ export class StatusService {
         id: updatedStatus.id,
         nama_status: updatedStatus.nama_status,
       },
+    };
+  }
+
+  public async delete(statusId: string): Promise<WebResponse> {
+    const status = await this.entityManager.findOne(Status, {
+      where: {
+        id: statusId,
+      },
+    });
+
+    if (!status) {
+      throw new HttpException('Status not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Status, status.id);
+    return {
+      message: 'Status deleted successfully!',
     };
   }
 }
