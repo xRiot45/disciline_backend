@@ -56,4 +56,25 @@ export class PendidikanService {
       })),
     };
   }
+
+  public async findById(
+    pendidikanId: string,
+  ): Promise<{ data: PendidikanResponse }> {
+    const pendidikan = await this.entityManager.findOne(Pendidikan, {
+      where: {
+        id: pendidikanId,
+      },
+    });
+
+    if (!pendidikan) {
+      throw new HttpException('Pendidikan not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: pendidikan.id,
+        nama_pendidikan: pendidikan.nama_pendidikan,
+      },
+    };
+  }
 }

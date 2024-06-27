@@ -2,7 +2,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { PendidikanService } from './pendidikan.service';
 import { PendidikanRequest, PendidikanResponse } from './dto/pendidikan.dto';
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
 
 @Controller('/api/master/pendidikan')
 export class PendidikanController {
@@ -20,5 +20,13 @@ export class PendidikanController {
   @UseGuards(AuthGuard, AdminGuard)
   public async findAll(): Promise<{ data: PendidikanResponse[] }> {
     return this.pendidikanService.findAll();
+  }
+
+  @Get('/:pendidikanId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async findById(
+    @Param('pendidikanId') pendidikanId: string,
+  ): Promise<{ data: PendidikanResponse }> {
+    return this.pendidikanService.findById(pendidikanId);
   }
 }
