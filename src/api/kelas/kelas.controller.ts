@@ -2,7 +2,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { KelasService } from './kelas.service';
 import { KelasRequest, KelasResponse } from './dto/kelas.dto';
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
 
 @Controller('/api/kelas')
 export class KelasController {
@@ -20,5 +20,13 @@ export class KelasController {
   @UseGuards(AuthGuard, AdminGuard)
   public async findAll(): Promise<{ data: KelasResponse[] }> {
     return this.kelasService.findAll();
+  }
+
+  @Get('/:kelasId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async findById(
+    @Param('kelasId') kelasId: string,
+  ): Promise<{ data: KelasResponse }> {
+    return this.kelasService.findById(kelasId);
   }
 }

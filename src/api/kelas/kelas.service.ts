@@ -101,4 +101,30 @@ export class KelasService {
 
     return { data };
   }
+
+  public async findById(kelasId: string): Promise<{ data: KelasResponse }> {
+    const kelas = await this.entityManager.findOne(Kelas, {
+      where: {
+        id: kelasId,
+      },
+    });
+
+    if (!kelas) {
+      throw new HttpException('Kelas not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: kelas.id,
+        nama_kelas: kelas.nama_kelas,
+        jurusan: {
+          nama_jurusan: kelas.jurusanId ? kelas.jurusanId.nama_jurusan : null,
+        },
+        guru: {
+          nama_guru: kelas.guruId ? kelas.guruId.nama_lengkap : null,
+          no_telp: kelas.guruId ? kelas.guruId.no_telp : null,
+        },
+      },
+    };
+  }
 }
