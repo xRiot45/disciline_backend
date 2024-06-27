@@ -42,7 +42,11 @@ export class AgamaService {
   }
 
   public async findAll(): Promise<{ data: AgamaResponse[] }> {
-    const agama = await this.entityManager.find(Agama);
+    const agama = await this.entityManager.find(Agama, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
 
     return {
       data: agama.map((agama) => ({
