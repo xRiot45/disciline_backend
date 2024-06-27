@@ -8,6 +8,7 @@ import { TipePelanggaranModule } from './master/tipe-pelanggaran/tipe-pelanggara
 import { PendidikanModule } from './master/pendidikan/pendidikan.module';
 import { JurusanModule } from './master/jurusan/jurusan.module';
 import { GuruModule } from './guru/guru.module';
+import { KelasModule } from './kelas/kelas.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GuruModule } from './guru/guru.module';
     PendidikanModule,
     JurusanModule,
     GuruModule,
+    KelasModule,
   ],
 })
 export class ApiModule {}

@@ -1,15 +1,18 @@
-import { Kelas } from 'src/api/kelas/entities/kelas.entity';
+import { Guru } from 'src/api/guru/entities/guru.entity';
+import { Jurusan } from 'src/api/master/jurusan/entities/jurusan.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class Jurusan {
+export class Kelas {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,7 +21,7 @@ export class Jurusan {
     length: 25,
     nullable: false,
   })
-  nama_jurusan: string;
+  nama_kelas: string;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -33,10 +36,15 @@ export class Jurusan {
   })
   updatedAt: Date;
 
-  @OneToMany(() => Kelas, (kelas) => kelas.jurusanId)
-  kelas: Kelas[];
+  @ManyToOne(() => Jurusan, (jurusan) => jurusan.id, { eager: true })
+  @JoinColumn({ name: 'jurusanId' })
+  jurusanId: Jurusan;
 
-  constructor(partial: Partial<Jurusan>) {
+  @OneToOne(() => Guru, (guru) => guru.id, { eager: true })
+  @JoinColumn({ name: 'guruId' })
+  guruId: Guru;
+
+  constructor(partial: Partial<Kelas>) {
     Object.assign(this, partial);
   }
 }

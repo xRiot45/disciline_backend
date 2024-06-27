@@ -8,9 +8,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Kelas } from 'src/api/kelas/entities/kelas.entity';
 
 @Entity()
 export class Guru {
@@ -79,6 +81,9 @@ export class Guru {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   updatedAt: Date;
+
+  @OneToOne(() => Kelas, (kelas) => kelas.id)
+  kelas: Kelas;
 
   constructor(partial: Partial<Guru>) {
     Object.assign(this, partial);
