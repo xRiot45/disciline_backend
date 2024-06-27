@@ -1,10 +1,10 @@
 import { Agama } from './entities/agama.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { AgamaValidation } from './agama.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { AgamaRequest, AgamaResponse } from './dto/agama.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { WebResponse } from 'src/common/dto/web.dto';
 
 @Injectable()
 export class AgamaService {
