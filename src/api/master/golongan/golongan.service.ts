@@ -77,4 +77,48 @@ export class GolonganService {
       },
     };
   }
+
+  public async update(
+    golonganId: string,
+    req: GolonganRequest,
+  ): Promise<{ data: GolonganResponse }> {
+    const updateRequest = this.validationService.validate(
+      GolonganValidation.UPDATE,
+      req,
+    );
+
+    const golongan = await this.entityManager.findOne(Golongan, {
+      where: {
+        id: golonganId,
+      },
+    });
+
+    if (!golongan) {
+      throw new HttpException('Golongan not found', HttpStatus.NOT_FOUND);
+    }
+
+    const golonganWithSameName = await this.entityManager.findOne(Golongan, {
+      where: {
+        nama_golongan: updateRequest.nama_golongan,
+      },
+    });
+
+    if (golonganWithSameName && golonganWithSameName.id !== golonganId) {
+      throw new HttpException('Golongan already exists', HttpStatus.CONFLICT);
+    }
+
+    await this.entityManager.update(Golongan, golonganId, updateRequest);
+    const updatedGolongan = await this.entityManager.findOne(Golongan, {
+      where: {
+        id: golonganId,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedGolongan.id,
+        nama_golongan: updatedGolongan.nama_golongan,
+      },
+    };
+  }
 }

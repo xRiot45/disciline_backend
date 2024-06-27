@@ -2,7 +2,15 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { GolonganService } from './golongan.service';
 import { GolonganRequest, GolonganResponse } from './dto/golongan.dto';
-import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Get,
+  Param,
+  Put,
+} from '@nestjs/common';
 
 @Controller('/api/master/golongan')
 export class GolonganController {
@@ -28,5 +36,14 @@ export class GolonganController {
     @Param('golonganId') golonganId: string,
   ): Promise<{ data: GolonganResponse }> {
     return this.golonganService.findById(golonganId);
+  }
+
+  @Put('/:golonganId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async update(
+    @Param('golonganId') golonganId: string,
+    @Body() req: GolonganRequest,
+  ): Promise<{ data: GolonganResponse }> {
+    return this.golonganService.update(golonganId, req);
   }
 }
