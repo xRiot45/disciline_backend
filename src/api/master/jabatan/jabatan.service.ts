@@ -72,4 +72,48 @@ export class JabatanService {
       },
     };
   }
+
+  public async update(
+    jabatanId: string,
+    req: JabatanRequest,
+  ): Promise<{ data: JabatanResponse }> {
+    const updateRequest = this.validationService.validate(
+      JabatanValidation.UPDATE,
+      req,
+    );
+
+    const jabatan = await this.entityManager.findOne(Jabatan, {
+      where: {
+        id: jabatanId,
+      },
+    });
+
+    if (!jabatan) {
+      throw new HttpException('Jabatan not found', HttpStatus.NOT_FOUND);
+    }
+
+    const jabatanWithSameName = await this.entityManager.findOne(Jabatan, {
+      where: {
+        nama_jabatan: updateRequest.nama_jabatan,
+      },
+    });
+
+    if (jabatanWithSameName && jabatanWithSameName.id !== jabatan.id) {
+      throw new HttpException('Jabatan already exists', HttpStatus.CONFLICT);
+    }
+
+    await this.entityManager.update(Jabatan, jabatanId, updateRequest);
+    const updatedJabatan = await this.entityManager.findOne(Jabatan, {
+      where: {
+        id: jabatanId,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedJabatan.id,
+        nama_jabatan: updatedJabatan.nama_jabatan,
+      },
+    };
+  }
 }
