@@ -1,6 +1,7 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { GuruService } from './guru.service';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { GuruRequest, GuruResponse } from './dto/guru.dto';
 import {
   Controller,
@@ -10,6 +11,7 @@ import {
   Get,
   Param,
   Patch,
+  Delete,
 } from '@nestjs/common';
 
 @Controller('/api/guru')
@@ -45,5 +47,11 @@ export class GuruController {
     @Body() req: GuruRequest,
   ): Promise<{ data: GuruResponse }> {
     return this.guruService.update(guruId, req);
+  }
+
+  @Delete('/:guruId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(@Param('guruId') guruId: string): Promise<WebResponse> {
+    return this.guruService.delete(guruId);
   }
 }

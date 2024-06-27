@@ -3,6 +3,7 @@ import { Agama } from '../master/agama/entities/agama.entity';
 import { Status } from '../master/status/entities/status.entity';
 import { Jabatan } from '../master/jabatan/entities/jabatan.entity';
 import { Golongan } from '../master/golongan/entities/golongan.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { GuruValidation } from './guru.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
@@ -259,6 +260,23 @@ export class GuruService {
         no_telp: updatedGuru.no_telp,
         alamat: updatedGuru.alamat,
       },
+    };
+  }
+
+  public async delete(guruId: string): Promise<WebResponse> {
+    const guru = await this.entityManager.findOne(Guru, {
+      where: {
+        id: guruId,
+      },
+    });
+
+    if (!guru) {
+      throw new HttpException('Guru not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Guru, guruId);
+    return {
+      message: 'Guru deleted successfully!',
     };
   }
 }
