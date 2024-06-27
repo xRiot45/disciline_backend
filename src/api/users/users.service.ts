@@ -52,7 +52,7 @@ export class UsersService {
     const signupUsers = await this.entityManager.save(user);
     return {
       data: {
-        id: signupUsers.id.toString(),
+        id: signupUsers.id,
         username: signupUsers.username,
         role: signupUsers.role,
       },
@@ -103,7 +103,7 @@ export class UsersService {
 
     return {
       data: {
-        id: dataUser.id.toString(),
+        id: dataUser.id,
         username: dataUser.username,
         role: dataUser.role,
       },
