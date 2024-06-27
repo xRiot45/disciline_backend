@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
     const token = request.headers.authorization?.split(' ')[1];
 
     if (!token) {
-      throw new HttpException('Unauthorized access', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('Token not found', HttpStatus.UNAUTHORIZED);
     }
 
     const decodedToken = this.jwtService.verify(token);
