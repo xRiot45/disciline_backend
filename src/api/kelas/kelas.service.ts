@@ -86,7 +86,6 @@ export class KelasService {
     });
 
     const data: KelasResponse[] = kelas.map((item) => {
-      console.log(item);
       return {
         id: item.id,
         nama_kelas: item.nama_kelas,
