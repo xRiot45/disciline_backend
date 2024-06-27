@@ -127,4 +127,83 @@ export class KelasService {
       },
     };
   }
+
+  public async update(
+    kelasId: string,
+    req: KelasRequest,
+  ): Promise<{ data: KelasResponse }> {
+    const updateRequest = this.validationService.validate(
+      KelasValidation.UPDATE,
+      req,
+    );
+
+    const kelas = await this.entityManager.findOne(Kelas, {
+      where: {
+        id: kelasId,
+      },
+    });
+
+    if (!kelas) {
+      throw new HttpException('Kelas not found', HttpStatus.NOT_FOUND);
+    }
+
+    const kelasWithSameName = await this.entityManager.findOne(Kelas, {
+      where: {
+        nama_kelas: updateRequest.nama_kelas,
+      },
+    });
+
+    if (kelasWithSameName && kelasWithSameName.id !== kelas.id) {
+      throw new HttpException('Kelas already exists', HttpStatus.CONFLICT);
+    }
+
+    const [jurusan, guru] = await Promise.all([
+      this.entityManager.findOne(Jurusan, {
+        where: {
+          id: updateRequest.jurusanId,
+        },
+      }),
+
+      this.entityManager.findOne(Guru, {
+        where: {
+          id: updateRequest.guruId,
+        },
+      }),
+    ]);
+
+    if (!jurusan) {
+      throw new HttpException('Jurusan not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (!guru) {
+      throw new HttpException('Guru not found', HttpStatus.NOT_FOUND);
+    }
+
+    const data = {
+      ...updateRequest,
+      jurusanId: jurusan,
+      guruId: guru,
+    };
+
+    await this.entityManager.update(Kelas, kelasId, data);
+    const updatedKelas = await this.entityManager.findOne(Kelas, {
+      where: {
+        id: kelasId,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedKelas.id,
+        nama_kelas: updatedKelas.nama_kelas,
+        jurusan: {
+          nama_jurusan: jurusan ? jurusan.nama_jurusan : null,
+        },
+        guru: {
+          nama_guru: guru ? guru.nama_lengkap : null,
+          no_telp: guru ? guru.no_telp : null,
+        },
+      },
+    };
+  }
 }
