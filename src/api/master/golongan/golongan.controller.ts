@@ -1,5 +1,6 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { GolonganService } from './golongan.service';
 import { GolonganRequest, GolonganResponse } from './dto/golongan.dto';
 import {
@@ -10,6 +11,7 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
 
 @Controller('/api/master/golongan')
@@ -45,5 +47,13 @@ export class GolonganController {
     @Body() req: GolonganRequest,
   ): Promise<{ data: GolonganResponse }> {
     return this.golonganService.update(golonganId, req);
+  }
+
+  @Delete('/:golonganId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(
+    @Param('golonganId') golonganId: string,
+  ): Promise<WebResponse> {
+    return this.golonganService.delete(golonganId);
   }
 }

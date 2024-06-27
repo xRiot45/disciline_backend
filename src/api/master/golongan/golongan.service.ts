@@ -1,4 +1,5 @@
 import { Golongan } from './entities/golongan.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { GolonganValidation } from './golongan.validation';
@@ -119,6 +120,23 @@ export class GolonganService {
         id: updatedGolongan.id,
         nama_golongan: updatedGolongan.nama_golongan,
       },
+    };
+  }
+
+  public async delete(golonganId: string): Promise<WebResponse> {
+    const golongan = await this.entityManager.findOne(Golongan, {
+      where: {
+        id: golonganId,
+      },
+    });
+
+    if (!golongan) {
+      throw new HttpException('Golongan not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Golongan, golonganId);
+    return {
+      message: 'Golongan deleted successfully!',
     };
   }
 }
