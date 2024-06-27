@@ -1,4 +1,5 @@
 import { Jabatan } from './entities/jabatan.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { JabatanValidation } from './jabatan.validation';
@@ -114,6 +115,23 @@ export class JabatanService {
         id: updatedJabatan.id,
         nama_jabatan: updatedJabatan.nama_jabatan,
       },
+    };
+  }
+
+  public async delete(jabatanId: string): Promise<WebResponse> {
+    const jabatan = await this.entityManager.findOne(Jabatan, {
+      where: {
+        id: jabatanId,
+      },
+    });
+
+    if (!jabatan) {
+      throw new HttpException('Jabatan not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Jabatan, jabatanId);
+    return {
+      message: 'Jabatan deleted successfully',
     };
   }
 }
