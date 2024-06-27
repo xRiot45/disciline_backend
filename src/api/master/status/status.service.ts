@@ -73,4 +73,48 @@ export class StatusService {
       },
     };
   }
+
+  public async update(
+    statusId: string,
+    req: StatusRequest,
+  ): Promise<{ data: StatusResponse }> {
+    const updateRequest = this.validationService.validate(
+      StatusValidation.UPDATE,
+      req,
+    );
+
+    const status = await this.entityManager.findOne(Status, {
+      where: {
+        id: statusId,
+      },
+    });
+
+    if (!status) {
+      throw new HttpException('Status not found', HttpStatus.NOT_FOUND);
+    }
+
+    const statusWithSameName = await this.entityManager.findOne(Status, {
+      where: {
+        nama_status: updateRequest.nama_status,
+      },
+    });
+
+    if (statusWithSameName && statusWithSameName.id !== status.id) {
+      throw new HttpException('Status already exists', HttpStatus.CONFLICT);
+    }
+
+    await this.entityManager.update(Status, status.id, updateRequest);
+    const updatedStatus = await this.entityManager.findOne(Status, {
+      where: {
+        id: status.id,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedStatus.id,
+        nama_status: updatedStatus.nama_status,
+      },
+    };
+  }
 }
