@@ -3,6 +3,7 @@ import { UsersModule } from './users/users.module';
 import { AgamaModule } from './master/agama/agama.module';
 import { StatusModule } from './master/status/status.module';
 import { JabatanModule } from './master/jabatan/jabatan.module';
+import { GolonganModule } from './master/golongan/golongan.module';
 import { TipePelanggaranModule } from './master/tipe-pelanggaran/tipe-pelanggaran.module';
 
 @Module({
@@ -12,6 +13,7 @@ import { TipePelanggaranModule } from './master/tipe-pelanggaran/tipe-pelanggara
     TipePelanggaranModule,
     StatusModule,
     JabatanModule,
+    GolonganModule,
   ],
 })
 export class ApiModule {}
