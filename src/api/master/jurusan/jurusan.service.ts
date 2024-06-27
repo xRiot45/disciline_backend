@@ -73,4 +73,48 @@ export class JurusanService {
       },
     };
   }
+
+  public async update(
+    jurusanId: string,
+    req: JurusanRequest,
+  ): Promise<{ data: JurusanResponse }> {
+    const updateRequest = this.validationService.validate(
+      JurusanValidation.UPDATE,
+      req,
+    );
+
+    const jurusan = await this.entityManager.findOne(Jurusan, {
+      where: {
+        id: jurusanId,
+      },
+    });
+
+    if (!jurusan) {
+      throw new HttpException('Jurusan not found', HttpStatus.NOT_FOUND);
+    }
+
+    const jurusanWithSameName = await this.entityManager.findOne(Jurusan, {
+      where: {
+        nama_jurusan: updateRequest.nama_jurusan,
+      },
+    });
+
+    if (jurusanWithSameName && jurusanWithSameName.id !== jurusan.id) {
+      throw new HttpException('Jurusan already exists', HttpStatus.CONFLICT);
+    }
+
+    await this.entityManager.update(Jurusan, jurusan.id, updateRequest);
+    const updatedJurusan = await this.entityManager.findOne(Jurusan, {
+      where: {
+        id: jurusan.id,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedJurusan.id,
+        nama_jurusan: updatedJurusan.nama_jurusan,
+      },
+    };
+  }
 }
