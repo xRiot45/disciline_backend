@@ -241,18 +241,24 @@ export class GuruService {
         nama_lengkap: updatedGuru.nama_lengkap,
         nip: updatedGuru.nip,
         status: {
-          nama_status: (updatedGuru.statusId as unknown as Status)?.nama_status,
+          nama_status: updatedGuru.statusId
+            ? updatedGuru.statusId.nama_status
+            : null,
         },
         jabatan: {
-          nama_jabatan: (updatedGuru.jabatanId as unknown as Jabatan)
-            ?.nama_jabatan,
+          nama_jabatan: updatedGuru.jabatanId
+            ? updatedGuru.jabatanId.nama_jabatan
+            : null,
         },
         golongan: {
-          nama_golongan: (updatedGuru.golonganId as unknown as Golongan)
-            ?.nama_golongan,
+          nama_golongan: updatedGuru.golonganId
+            ? updatedGuru.golonganId.nama_golongan
+            : null,
         },
         agama: {
-          nama_agama: (updatedGuru.agamaId as unknown as Agama)?.nama_agama,
+          nama_agama: updatedGuru.agamaId
+            ? updatedGuru.agamaId.nama_agama
+            : null,
         },
         jenis_kelamin: updatedGuru.jenis_kelamin,
         no_telp: updatedGuru.no_telp,
