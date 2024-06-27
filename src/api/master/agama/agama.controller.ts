@@ -10,7 +10,9 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
+import { WebResponse } from 'src/common/dto/web.dto';
 
 @Controller('/api/master/agama')
 export class AgamaController {
@@ -45,5 +47,11 @@ export class AgamaController {
     @Body() req: AgamaRequest,
   ): Promise<{ data: AgamaResponse }> {
     return this.agamaService.update(agamaId, req);
+  }
+
+  @Delete('/:agamaId')
+  @UseGuards(AdminGuard, AuthGuard)
+  public async delete(@Param('agamaId') agamaId: string): Promise<WebResponse> {
+    return this.agamaService.delete(agamaId);
   }
 }

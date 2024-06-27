@@ -4,6 +4,7 @@ import { AgamaValidation } from './agama.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { AgamaRequest, AgamaResponse } from './dto/agama.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { WebResponse } from 'src/common/dto/web.dto';
 
 @Injectable()
 export class AgamaService {
@@ -111,6 +112,23 @@ export class AgamaService {
         id: updatedAgama.id,
         nama_agama: updatedAgama.nama_agama,
       },
+    };
+  }
+
+  public async delete(agamaId: string): Promise<WebResponse> {
+    const agama = await this.entityManager.findOne(Agama, {
+      where: {
+        id: agamaId,
+      },
+    });
+
+    if (!agama) {
+      throw new HttpException('Agama not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Agama, agama.id);
+    return {
+      message: 'Agama deleted successfully!',
     };
   }
 }
