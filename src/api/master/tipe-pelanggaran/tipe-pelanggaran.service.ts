@@ -1,3 +1,4 @@
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { TipePelanggaran } from './entities/tipe-pelanggaran.entity';
 import { ValidationService } from 'src/common/validation/validation.service';
@@ -151,6 +152,27 @@ export class TipePelanggaranService {
         id: updatedTipePelanggaran.id,
         nama_tipe_pelanggaran: updatedTipePelanggaran.nama_tipe_pelanggaran,
       },
+    };
+  }
+
+  public async delete(tipePelanggaranId: string): Promise<WebResponse> {
+    const tipePelanggaran = await this.entityManager.findOne(TipePelanggaran, {
+      where: {
+        id: tipePelanggaranId,
+      },
+    });
+
+    if (!tipePelanggaran) {
+      throw new HttpException(
+        'Tipe Pelanggaran not found',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    await this.entityManager.delete(TipePelanggaran, tipePelanggaran.id);
+
+    return {
+      message: 'Tipe Pelanggaran deleted successfully!',
     };
   }
 }

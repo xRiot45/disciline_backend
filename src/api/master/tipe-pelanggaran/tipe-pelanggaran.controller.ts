@@ -1,6 +1,11 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { TipePelanggaranService } from './tipe-pelanggaran.service';
+import {
+  TipePelanggaranRequest,
+  TipePelanggaranResponse,
+} from './dto/tipe-pelanggaran.dto';
 import {
   Controller,
   Post,
@@ -9,11 +14,8 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
-import {
-  TipePelanggaranRequest,
-  TipePelanggaranResponse,
-} from './dto/tipe-pelanggaran.dto';
 
 @Controller('/api/master/tipe-pelanggaran')
 export class TipePelanggaranController {
@@ -50,5 +52,13 @@ export class TipePelanggaranController {
     @Body() req: TipePelanggaranRequest,
   ): Promise<{ data: TipePelanggaranResponse }> {
     return this.tipePelanggaranService.update(tipePelanggaranId, req);
+  }
+
+  @Delete('/:tipePelanggaranId')
+  @UseGuards(AdminGuard, AuthGuard)
+  public async delete(
+    @Param('tipePelanggaranId') tipePelanggaranId: string,
+  ): Promise<WebResponse> {
+    return this.tipePelanggaranService.delete(tipePelanggaranId);
   }
 }
