@@ -69,4 +69,48 @@ export class AgamaService {
       },
     };
   }
+
+  public async update(
+    agamaId: string,
+    req: AgamaRequest,
+  ): Promise<{ data: AgamaResponse }> {
+    const updateRequest = this.validationService.validate(
+      AgamaValidation.UPDATE,
+      req,
+    );
+
+    const agama = await this.entityManager.findOne(Agama, {
+      where: {
+        id: agamaId,
+      },
+    });
+
+    if (!agama) {
+      throw new HttpException('Agama not found', HttpStatus.NOT_FOUND);
+    }
+
+    const agamaWithSameName = await this.entityManager.findOne(Agama, {
+      where: {
+        nama_agama: updateRequest.nama_agama,
+      },
+    });
+
+    if (agamaWithSameName && agamaWithSameName.id !== agama.id) {
+      throw new HttpException('Agama already exists', HttpStatus.CONFLICT);
+    }
+
+    await this.entityManager.update(Agama, agama.id, updateRequest);
+    const updatedAgama = await this.entityManager.findOne(Agama, {
+      where: {
+        id: agama.id,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedAgama.id,
+        nama_agama: updatedAgama.nama_agama,
+      },
+    };
+  }
 }

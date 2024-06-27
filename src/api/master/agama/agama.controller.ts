@@ -2,7 +2,15 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { AgamaService } from './agama.service';
 import { AgamaRequest, AgamaResponse } from './dto/agama.dto';
-import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Get,
+  Param,
+  Put,
+} from '@nestjs/common';
 
 @Controller('/api/master/agama')
 export class AgamaController {
@@ -28,5 +36,14 @@ export class AgamaController {
     @Param('agamaId') agamaId: string,
   ): Promise<{ data: AgamaResponse }> {
     return this.agamaService.findById(agamaId);
+  }
+
+  @Put('/:agamaId')
+  @UseGuards(AdminGuard, AuthGuard)
+  public async update(
+    @Param('agamaId') agamaId: string,
+    @Body() req: AgamaRequest,
+  ): Promise<{ data: AgamaResponse }> {
+    return this.agamaService.update(agamaId, req);
   }
 }
