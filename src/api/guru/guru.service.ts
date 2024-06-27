@@ -164,4 +164,101 @@ export class GuruService {
       },
     };
   }
+
+  public async update(
+    guruId: string,
+    req: GuruRequest,
+  ): Promise<{ data: GuruResponse }> {
+    const updateRequest = this.validationService.validate(
+      GuruValidation.UPDATE,
+      req,
+    );
+
+    const guru = await this.entityManager.findOne(Guru, {
+      where: {
+        id: guruId,
+      },
+    });
+
+    if (!guru) {
+      throw new HttpException('Guru not found', HttpStatus.NOT_FOUND);
+    }
+
+    const guruWithSameNipAndName = await this.entityManager.findOne(Guru, {
+      where: {
+        nama_lengkap: updateRequest.nama_lengkap,
+        nip: updateRequest.nip,
+      },
+    });
+
+    if (guruWithSameNipAndName && guruWithSameNipAndName.id !== guruId) {
+      throw new HttpException('Guru already exists', HttpStatus.CONFLICT);
+    }
+
+    const [status, jabatan, golongan, agama] = await Promise.all([
+      this.entityManager.findOne(Status, {
+        where: {
+          id: updateRequest.statusId,
+        },
+      }),
+
+      this.entityManager.findOne(Jabatan, {
+        where: {
+          id: updateRequest.jabatanId,
+        },
+      }),
+
+      this.entityManager.findOne(Golongan, {
+        where: {
+          id: updateRequest.golonganId,
+        },
+      }),
+
+      this.entityManager.findOne(Agama, {
+        where: {
+          id: updateRequest.agamaId,
+        },
+      }),
+    ]);
+
+    const data = {
+      ...updateRequest,
+      statusId: status,
+      jabatanId: jabatan,
+      golonganId: golongan,
+      agamaId: agama,
+    };
+
+    await this.entityManager.update(Guru, guruId, data);
+    const updatedGuru = await this.entityManager.findOne(Guru, {
+      where: {
+        id: guruId,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedGuru.id,
+        nama_lengkap: updatedGuru.nama_lengkap,
+        nip: updatedGuru.nip,
+        status: {
+          nama_status: (updatedGuru.statusId as unknown as Status)?.nama_status,
+        },
+        jabatan: {
+          nama_jabatan: (updatedGuru.jabatanId as unknown as Jabatan)
+            ?.nama_jabatan,
+        },
+        golongan: {
+          nama_golongan: (updatedGuru.golonganId as unknown as Golongan)
+            ?.nama_golongan,
+        },
+        agama: {
+          nama_agama: (updatedGuru.agamaId as unknown as Agama)?.nama_agama,
+        },
+        jenis_kelamin: updatedGuru.jenis_kelamin,
+        no_telp: updatedGuru.no_telp,
+        alamat: updatedGuru.alamat,
+      },
+    };
+  }
 }

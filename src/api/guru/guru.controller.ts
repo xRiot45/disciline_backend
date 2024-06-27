@@ -2,7 +2,15 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { GuruService } from './guru.service';
 import { GuruRequest, GuruResponse } from './dto/guru.dto';
-import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Get,
+  Param,
+  Patch,
+} from '@nestjs/common';
 
 @Controller('/api/guru')
 export class GuruController {
@@ -28,5 +36,14 @@ export class GuruController {
     @Param('guruId') guruId: string,
   ): Promise<{ data: GuruResponse }> {
     return this.guruService.findById(guruId);
+  }
+
+  @Patch('/:guruId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async update(
+    @Param('guruId') guruId: string,
+    @Body() req: GuruRequest,
+  ): Promise<{ data: GuruResponse }> {
+    return this.guruService.update(guruId, req);
   }
 }
