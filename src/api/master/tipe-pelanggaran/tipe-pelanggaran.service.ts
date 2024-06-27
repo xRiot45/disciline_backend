@@ -65,4 +65,28 @@ export class TipePelanggaranService {
       })),
     };
   }
+
+  public async findById(
+    tipePelanggaranId: string,
+  ): Promise<{ data: TipePelanggaranResponse }> {
+    const tipePelanggaran = await this.entityManager.findOne(TipePelanggaran, {
+      where: {
+        id: tipePelanggaranId,
+      },
+    });
+
+    if (!tipePelanggaran) {
+      throw new HttpException(
+        'Tipe Pelanggaran not found',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return {
+      data: {
+        id: tipePelanggaran.id,
+        nama_tipe_pelanggaran: tipePelanggaran.nama_tipe_pelanggaran,
+      },
+    };
+  }
 }

@@ -1,7 +1,7 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { TipePelanggaranService } from './tipe-pelanggaran.service';
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
 import {
   TipePelanggaranRequest,
   TipePelanggaranResponse,
@@ -22,8 +22,16 @@ export class TipePelanggaranController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
+  @UseGuards(AdminGuard, AuthGuard)
   public async findAll(): Promise<{ data: TipePelanggaranResponse[] }> {
     return this.tipePelanggaranService.findAll();
+  }
+
+  @Get('/:tipePelanggaranId')
+  @UseGuards(AdminGuard, AuthGuard)
+  public async findById(
+    @Param('tipePelanggaranId') tipePelanggaranId: string,
+  ): Promise<{ data: TipePelanggaranResponse }> {
+    return this.tipePelanggaranService.findById(tipePelanggaranId);
   }
 }
