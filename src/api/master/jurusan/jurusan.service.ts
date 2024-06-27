@@ -54,4 +54,23 @@ export class JurusanService {
       })),
     };
   }
+
+  public async findById(jurusanId: string): Promise<{ data: JurusanResponse }> {
+    const jurusan = await this.entityManager.findOne(Jurusan, {
+      where: {
+        id: jurusanId,
+      },
+    });
+
+    if (!jurusan) {
+      throw new HttpException('Jurusan not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: jurusan.id,
+        nama_jurusan: jurusan.nama_jurusan,
+      },
+    };
+  }
 }

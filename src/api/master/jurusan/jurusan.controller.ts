@@ -2,7 +2,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { JurusanService } from './jurusan.service';
 import { JurusanRequest, JurusanResponse } from './dto/jurusan.dto';
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
 
 @Controller('/api/master/jurusan')
 export class JurusanController {
@@ -20,5 +20,13 @@ export class JurusanController {
   @UseGuards(AuthGuard, AdminGuard)
   public async findAll(): Promise<{ data: JurusanResponse[] }> {
     return this.jurusanService.findAll();
+  }
+
+  @Get('/:jurusanId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async findById(
+    @Param('jurusanId') jurusanId: string,
+  ): Promise<{ data: JurusanResponse }> {
+    return this.jurusanService.findById(jurusanId);
   }
 }
