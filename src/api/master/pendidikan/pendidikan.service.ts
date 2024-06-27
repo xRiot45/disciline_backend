@@ -41,4 +41,19 @@ export class PendidikanService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: PendidikanResponse[] }> {
+    const pendidikan = await this.entityManager.find(Pendidikan, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: pendidikan.map((item) => ({
+        id: item.id,
+        nama_pendidikan: item.nama_pendidikan,
+      })),
+    };
+  }
 }
