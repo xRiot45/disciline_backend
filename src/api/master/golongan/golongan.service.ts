@@ -41,4 +41,19 @@ export class GolonganService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: GolonganResponse[] }> {
+    const golongans = await this.entityManager.find(Golongan, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: golongans.map((golongan) => ({
+        id: golongan.id,
+        nama_golongan: golongan.nama_golongan,
+      })),
+    };
+  }
 }
