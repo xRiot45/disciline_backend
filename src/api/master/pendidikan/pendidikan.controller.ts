@@ -1,5 +1,6 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { PendidikanService } from './pendidikan.service';
 import { PendidikanRequest, PendidikanResponse } from './dto/pendidikan.dto';
 import {
@@ -10,6 +11,7 @@ import {
   Get,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
 
 @Controller('/api/master/pendidikan')
@@ -45,5 +47,13 @@ export class PendidikanController {
     @Body() req: PendidikanRequest,
   ): Promise<{ data: PendidikanResponse }> {
     return this.pendidikanService.update(pendidikanId, req);
+  }
+
+  @Delete('/:pendidikanId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(
+    @Param('pendidikanId') pendidikanId: string,
+  ): Promise<WebResponse> {
+    return this.pendidikanService.delete(pendidikanId);
   }
 }

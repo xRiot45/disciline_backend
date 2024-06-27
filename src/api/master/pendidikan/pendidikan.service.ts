@@ -1,4 +1,5 @@
 import { Pendidikan } from './entities/pendidikan.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { PendidikanValidation } from './pendidikan.validation';
@@ -122,6 +123,23 @@ export class PendidikanService {
         id: updatedPendidikan.id,
         nama_pendidikan: updatedPendidikan.nama_pendidikan,
       },
+    };
+  }
+
+  public async delete(pendidikanId: string): Promise<WebResponse> {
+    const pendidikan = await this.entityManager.findOne(Pendidikan, {
+      where: {
+        id: pendidikanId,
+      },
+    });
+
+    if (!pendidikan) {
+      throw new HttpException('Pendidikan not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Pendidikan, pendidikan.id);
+    return {
+      message: 'Pendidikan deleted successfully!',
     };
   }
 }
