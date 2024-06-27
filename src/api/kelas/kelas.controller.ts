@@ -10,6 +10,7 @@ import {
   Get,
   Param,
   Patch,
+  Delete,
 } from '@nestjs/common';
 
 @Controller('/api/kelas')
@@ -45,5 +46,13 @@ export class KelasController {
     @Body() req: KelasRequest,
   ): Promise<{ data: KelasResponse }> {
     return this.kelasService.update(kelasId, req);
+  }
+
+  @Delete('/:kelasId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(
+    @Param('kelasId') kelasId: string,
+  ): Promise<{ message: string }> {
+    return this.kelasService.delete(kelasId);
   }
 }

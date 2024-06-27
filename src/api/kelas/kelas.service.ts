@@ -1,6 +1,7 @@
 import { Guru } from '../guru/entities/guru.entity';
 import { Kelas } from './entities/kelas.entity';
 import { Jurusan } from '../master/jurusan/entities/jurusan.entity';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { KelasValidation } from './kelas.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
@@ -204,6 +205,23 @@ export class KelasService {
           no_telp: guru ? guru.no_telp : null,
         },
       },
+    };
+  }
+
+  public async delete(kelasId: string): Promise<WebResponse> {
+    const kelas = await this.entityManager.findOne(Kelas, {
+      where: {
+        id: kelasId,
+      },
+    });
+
+    if (!kelas) {
+      throw new HttpException('Kelas not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Kelas, kelasId);
+    return {
+      message: 'Kelas deleted successfully!',
     };
   }
 }
