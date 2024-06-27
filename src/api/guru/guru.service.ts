@@ -128,4 +128,40 @@ export class GuruService {
 
     return { data: data };
   }
+
+  public async findById(guruId: string): Promise<{ data: GuruResponse }> {
+    const guru = await this.entityManager.findOne(Guru, {
+      where: {
+        id: guruId,
+      },
+    });
+
+    if (!guru) {
+      throw new HttpException('Guru not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: guru.id,
+        nama_lengkap: guru.nama_lengkap,
+        nip: guru.nip,
+        status: {
+          nama_status: (guru.statusId as unknown as Status)?.nama_status,
+        },
+        jabatan: {
+          nama_jabatan: (guru.jabatanId as unknown as Jabatan)?.nama_jabatan,
+        },
+        golongan: {
+          nama_golongan: (guru.golonganId as unknown as Golongan)
+            ?.nama_golongan,
+        },
+        agama: {
+          nama_agama: (guru.agamaId as unknown as Agama)?.nama_agama,
+        },
+        jenis_kelamin: guru.jenis_kelamin,
+        no_telp: guru.no_telp,
+        alamat: guru.alamat,
+      },
+    };
+  }
 }
