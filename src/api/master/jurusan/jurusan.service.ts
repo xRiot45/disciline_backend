@@ -39,4 +39,19 @@ export class JurusanService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: JurusanResponse[] }> {
+    const jurusan = await this.entityManager.find(Jurusan, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: jurusan.map((item) => ({
+        id: item.id,
+        nama_jurusan: item.nama_jurusan,
+      })),
+    };
+  }
 }
