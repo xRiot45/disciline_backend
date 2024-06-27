@@ -50,4 +50,19 @@ export class TipePelanggaranService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: TipePelanggaranResponse[] }> {
+    const tipePelanggaran = await this.entityManager.find(TipePelanggaran, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: tipePelanggaran.map((item) => ({
+        id: item.id,
+        nama_tipe_pelanggaran: item.nama_tipe_pelanggaran,
+      })),
+    };
+  }
 }
