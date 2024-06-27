@@ -76,4 +76,29 @@ export class KelasService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: KelasResponse[] }> {
+    const kelas = await this.entityManager.find(Kelas, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    const data: KelasResponse[] = kelas.map((item) => {
+      console.log(item);
+      return {
+        id: item.id,
+        nama_kelas: item.nama_kelas,
+        jurusan: {
+          nama_jurusan: item.jurusanId ? item.jurusanId.nama_jurusan : null,
+        },
+        guru: {
+          nama_guru: item.guruId ? item.guruId.nama_lengkap : null,
+          no_telp: item.guruId ? item.guruId.no_telp : null,
+        },
+      };
+    });
+
+    return { data };
+  }
 }
