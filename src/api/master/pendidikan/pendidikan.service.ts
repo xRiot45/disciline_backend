@@ -77,4 +77,51 @@ export class PendidikanService {
       },
     };
   }
+
+  public async update(
+    pendidikanId: string,
+    req: PendidikanRequest,
+  ): Promise<{ data: PendidikanResponse }> {
+    const updateRequest = this.validationService.validate(
+      PendidikanValidation.UPDATE,
+      req,
+    );
+
+    const pendidikan = await this.entityManager.findOne(Pendidikan, {
+      where: {
+        id: pendidikanId,
+      },
+    });
+
+    if (!pendidikan) {
+      throw new HttpException('Pendidikan not found', HttpStatus.NOT_FOUND);
+    }
+
+    const pendidikanWithSameName = await this.entityManager.findOne(
+      Pendidikan,
+      {
+        where: {
+          nama_pendidikan: updateRequest.nama_pendidikan,
+        },
+      },
+    );
+
+    if (pendidikanWithSameName && pendidikanWithSameName.id !== pendidikan.id) {
+      throw new HttpException('Pendidikan already exists', HttpStatus.CONFLICT);
+    }
+
+    await this.entityManager.update(Pendidikan, pendidikan.id, updateRequest);
+    const updatedPendidikan = await this.entityManager.findOne(Pendidikan, {
+      where: {
+        id: pendidikan.id,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedPendidikan.id,
+        nama_pendidikan: updatedPendidikan.nama_pendidikan,
+      },
+    };
+  }
 }
