@@ -1,4 +1,5 @@
 import { Guru } from 'src/api/guru/entities/guru.entity';
+import { Siswa } from 'src/api/siswa/entities/siswa.entity';
 import { Jurusan } from 'src/api/master/jurusan/entities/jurusan.entity';
 import {
   Column,
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -43,6 +45,9 @@ export class Kelas {
   @OneToOne(() => Guru, (guru) => guru.id, { eager: true })
   @JoinColumn({ name: 'guruId' })
   guruId: Guru;
+
+  @OneToMany(() => Siswa, (siswa) => siswa.kelasId)
+  siswa: Siswa[];
 
   constructor(partial: Partial<Kelas>) {
     Object.assign(this, partial);

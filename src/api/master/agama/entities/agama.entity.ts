@@ -1,4 +1,5 @@
 import { Guru } from 'src/api/guru/entities/guru.entity';
+import { Siswa } from 'src/api/siswa/entities/siswa.entity';
 import {
   Column,
   CreateDateColumn,
@@ -35,6 +36,9 @@ export class Agama {
 
   @OneToMany(() => Guru, (guru) => guru.jabatanId)
   guru: Guru[];
+
+  @OneToMany(() => Siswa, (siswa) => siswa.agamaId)
+  siswa: Siswa[];
 
   constructor(partial: Partial<Agama>) {
     Object.assign(this, partial);
