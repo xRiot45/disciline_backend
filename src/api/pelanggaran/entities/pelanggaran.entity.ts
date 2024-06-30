@@ -1,4 +1,5 @@
 import { Siswa } from 'src/api/siswa/entities/siswa.entity';
+import { TipePelanggaran } from 'src/api/master/tipe-pelanggaran/entities/tipe-pelanggaran.entity';
 import {
   Column,
   CreateDateColumn,
@@ -14,11 +15,11 @@ export class Pelanggaran {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Pelanggaran, (pelanggaran) => pelanggaran.id, {
+  @ManyToOne(() => TipePelanggaran, (tipePelanggaran) => tipePelanggaran.id, {
     eager: true,
   })
   @JoinColumn({ name: 'tipePelanggaranId' })
-  tipePelanggaranId: Pelanggaran;
+  tipePelanggaranId: TipePelanggaran;
 
   @ManyToOne(() => Siswa, (siswa) => siswa.id, { eager: true })
   @JoinColumn({ name: 'siswaId' })
