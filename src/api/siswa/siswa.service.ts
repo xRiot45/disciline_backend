@@ -132,4 +132,49 @@ export class SiswaService {
       })),
     };
   }
+
+  public async findById(siswaId: string): Promise<{ data: SiswaResponse }> {
+    const siswa = await this.entityManager.findOne(Siswa, {
+      where: {
+        id: siswaId,
+      },
+    });
+
+    if (!siswa) {
+      throw new HttpException('Siswa not found', HttpStatus.NOT_FOUND);
+    }
+
+    return {
+      data: {
+        id: siswa.id,
+        nama_lengkap: siswa.nama_lengkap,
+        nis: siswa.nis,
+        nisn: siswa.nisn,
+        tanggal_lahir: siswa.tanggal_lahir,
+        tempat_lahir: siswa.tempat_lahir,
+        jenis_kelamin: siswa.jenis_kelamin,
+        kelas: {
+          nama_kelas: siswa.kelasId ? siswa.kelasId.nama_kelas : null,
+          jurusan: {
+            nama_jurusan: siswa.kelasId
+              ? siswa.kelasId.jurusanId.nama_jurusan
+              : null,
+          },
+          guru: {
+            nama_lengkap: siswa.kelasId
+              ? siswa.kelasId.guruId.nama_lengkap
+              : null,
+          },
+        },
+
+        agama: {
+          nama_agama: siswa.agamaId ? siswa.agamaId.nama_agama : null,
+        },
+
+        nama_wali: siswa.nama_wali,
+        no_telp_wali: siswa.no_telp_wali,
+        alamat: siswa.alamat,
+      },
+    };
+  }
 }
