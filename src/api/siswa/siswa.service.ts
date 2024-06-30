@@ -91,4 +91,45 @@ export class SiswaService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: SiswaResponse[] }> {
+    const siswa = await this.entityManager.find(Siswa, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: siswa.map((item) => ({
+        id: item.id,
+        nama_lengkap: item.nama_lengkap,
+        nis: item.nis,
+        nisn: item.nisn,
+        tanggal_lahir: item.tanggal_lahir,
+        tempat_lahir: item.tempat_lahir,
+        jenis_kelamin: item.jenis_kelamin,
+        kelas: {
+          nama_kelas: item.kelasId ? item.kelasId.nama_kelas : null,
+          jurusan: {
+            nama_jurusan: item.kelasId
+              ? item.kelasId.jurusanId.nama_jurusan
+              : null,
+          },
+          guru: {
+            nama_lengkap: item.kelasId
+              ? item.kelasId.guruId.nama_lengkap
+              : null,
+          },
+        },
+
+        agama: {
+          nama_agama: item.agamaId ? item.agamaId.nama_agama : null,
+        },
+
+        nama_wali: item.nama_wali,
+        no_telp_wali: item.no_telp_wali,
+        alamat: item.alamat,
+      })),
+    };
+  }
 }
