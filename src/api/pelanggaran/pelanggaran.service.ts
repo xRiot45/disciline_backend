@@ -179,4 +179,93 @@ export class PelanggaranService {
       },
     };
   }
+
+  public async update(
+    pelanggaranId: string,
+    req: PelanggaranRequest,
+  ): Promise<{ data: PelanggaranResponse }> {
+    const updateRequest = this.validationService.validate(
+      PelanggaranValidation.UPDATE,
+      req,
+    );
+
+    const pelanggaran = await this.entityManager.findOne(Pelanggaran, {
+      where: {
+        id: pelanggaranId,
+      },
+    });
+
+    if (!pelanggaran) {
+      throw new HttpException('Pelanggaran not found', HttpStatus.NOT_FOUND);
+    }
+
+    const [tipePelanggaran, siswa] = await Promise.all([
+      this.entityManager.findOne(TipePelanggaran, {
+        where: {
+          id: updateRequest.tipePelanggaranId,
+        },
+      }),
+
+      this.entityManager.findOne(Siswa, {
+        where: {
+          id: updateRequest.siswaId,
+        },
+      }),
+    ]);
+
+    if (!tipePelanggaran) {
+      throw new HttpException(
+        'Tipe Pelanggaran not found',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    if (!siswa) {
+      throw new HttpException('Siswa not found', HttpStatus.NOT_FOUND);
+    }
+
+    const data = {
+      ...updateRequest,
+      tipePelanggaranId: tipePelanggaran,
+      siswaId: siswa,
+    };
+
+    await this.entityManager.update(Pelanggaran, pelanggaranId, data);
+    const updatedPelanggaran = await this.entityManager.findOne(Pelanggaran, {
+      where: {
+        id: pelanggaranId,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedPelanggaran.id,
+        tipe_pelanggaran: {
+          nama_tipe_pelanggaran: tipePelanggaran
+            ? tipePelanggaran.nama_tipe_pelanggaran
+            : null,
+        },
+        siswa: {
+          nama_lengkap: siswa ? siswa.nama_lengkap : null,
+          kelas: {
+            nama_kelas: siswa?.kelasId ? siswa.kelasId.nama_kelas : null,
+            jurusan: {
+              nama_jurusan: siswa?.kelasId?.jurusanId
+                ? siswa.kelasId.jurusanId.nama_jurusan
+                : null,
+            },
+            guru: {
+              nama_lengkap: siswa?.kelasId?.guruId
+                ? siswa.kelasId.guruId.nama_lengkap
+                : null,
+            },
+          },
+          nama_wali: siswa ? siswa.nama_wali : null,
+          no_telp_wali: siswa ? siswa.no_telp_wali : null,
+          alamat: siswa ? siswa.alamat : null,
+        },
+        keterangan: updatedPelanggaran.keterangan,
+      },
+    };
+  }
 }
