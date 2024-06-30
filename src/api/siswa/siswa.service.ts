@@ -6,6 +6,7 @@ import { SiswaValidation } from './siswa.validation';
 import { ValidationService } from 'src/common/validation/validation.service';
 import { SiswaRequest, SiswaResponse } from './dto/siswa.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { WebResponse } from 'src/common/dto/web.dto';
 
 @Injectable()
 export class SiswaService {
@@ -269,6 +270,23 @@ export class SiswaService {
         no_telp_wali: updatedSiswa.no_telp_wali,
         alamat: updatedSiswa.alamat,
       },
+    };
+  }
+
+  public async delete(siswaId: string): Promise<WebResponse> {
+    const siswa = await this.entityManager.findOne(Siswa, {
+      where: {
+        id: siswaId,
+      },
+    });
+
+    if (!siswa) {
+      throw new HttpException('Siswa not found', HttpStatus.NOT_FOUND);
+    }
+
+    await this.entityManager.delete(Siswa, siswaId);
+    return {
+      message: 'Siswa deleted successfully!',
     };
   }
 }

@@ -10,7 +10,9 @@ import {
   Get,
   Param,
   Patch,
+  Delete,
 } from '@nestjs/common';
+import { WebResponse } from 'src/common/dto/web.dto';
 
 @Controller('/api/siswa')
 export class SiswaController {
@@ -45,5 +47,11 @@ export class SiswaController {
     @Body() req: SiswaRequest,
   ): Promise<{ data: SiswaResponse }> {
     return this.siswaService.update(siswaId, req);
+  }
+
+  @Delete('/:siswaId')
+  @UseGuards(AuthGuard, AdminGuard)
+  public async delete(@Param('siswaId') siswaId: string): Promise<WebResponse> {
+    return this.siswaService.delete(siswaId);
   }
 }
