@@ -20,7 +20,6 @@ export class SiswaResponse {
   tanggal_lahir: string;
   tempat_lahir: string;
   jenis_kelamin: string;
-  createdAt: Date;
   agama: {
     nama_agama: string;
   };

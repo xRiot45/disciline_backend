@@ -57,11 +57,25 @@ export class Siswa {
   })
   jenis_kelamin: string;
 
-  @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
+  @Column({
+    type: 'varchar',
+    length: 50,
+    nullable: false,
   })
-  createdAt: Date;
+  nama_wali: string;
+
+  @Column({
+    type: 'varchar',
+    length: 20,
+    nullable: false,
+  })
+  no_telp_wali: string;
+
+  @Column({
+    type: 'text',
+    nullable: false,
+  })
+  alamat: string;
 
   @ManyToOne(() => Agama, (agama) => agama.id, { eager: true })
   @JoinColumn({ name: 'agamaId' })
@@ -70,6 +84,12 @@ export class Siswa {
   @ManyToOne(() => Kelas, (kelas) => kelas.id, { eager: true })
   @JoinColumn({ name: 'kelasId' })
   kelasId: Kelas;
+
+  @CreateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
+  createdAt: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
