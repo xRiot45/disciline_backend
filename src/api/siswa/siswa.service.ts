@@ -177,4 +177,98 @@ export class SiswaService {
       },
     };
   }
+
+  public async update(
+    siswaId: string,
+    req: SiswaRequest,
+  ): Promise<{ data: SiswaResponse }> {
+    const updateRequest = this.validationService.validate(
+      SiswaValidation.UPDATE,
+      req,
+    );
+
+    const siswa = await this.entityManager.findOne(Siswa, {
+      where: {
+        id: siswaId,
+      },
+    });
+
+    if (!siswa) {
+      throw new HttpException('Siswa not found', HttpStatus.NOT_FOUND);
+    }
+
+    const siswaWithSameName = await this.entityManager.findOne(Siswa, {
+      where: {
+        nama_lengkap: updateRequest.nama_lengkap,
+      },
+    });
+
+    if (siswaWithSameName && siswaWithSameName.id !== siswaId) {
+      throw new HttpException('Siswa already exists', HttpStatus.CONFLICT);
+    }
+
+    const [agama, kelas] = await Promise.all([
+      this.entityManager.findOne(Agama, {
+        where: {
+          id: updateRequest.agamaId,
+        },
+      }),
+
+      this.entityManager.findOne(Kelas, {
+        where: {
+          id: updateRequest.kelasId,
+        },
+      }),
+    ]);
+
+    if (!agama) {
+      throw new HttpException('Agama not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (!kelas) {
+      throw new HttpException('Kelas not found', HttpStatus.NOT_FOUND);
+    }
+
+    const data = {
+      ...updateRequest,
+      agamaId: agama,
+      kelasId: kelas,
+    };
+
+    await this.entityManager.update(Siswa, siswaId, data);
+    const updatedSiswa = await this.entityManager.findOne(Siswa, {
+      where: {
+        id: siswaId,
+      },
+    });
+
+    return {
+      data: {
+        id: updatedSiswa.id,
+        nama_lengkap: updatedSiswa.nama_lengkap,
+        nis: updatedSiswa.nis,
+        nisn: updatedSiswa.nisn,
+        tanggal_lahir: updatedSiswa.tanggal_lahir,
+        tempat_lahir: updatedSiswa.tempat_lahir,
+        jenis_kelamin: updatedSiswa.jenis_kelamin,
+        kelas: {
+          nama_kelas: kelas ? kelas.nama_kelas : null,
+          jurusan: {
+            nama_jurusan: kelas ? kelas.jurusanId.nama_jurusan : null,
+          },
+          guru: {
+            nama_lengkap: kelas ? kelas.guruId.nama_lengkap : null,
+          },
+        },
+
+        agama: {
+          nama_agama: agama ? agama.nama_agama : null,
+        },
+
+        nama_wali: updatedSiswa.nama_wali,
+        no_telp_wali: updatedSiswa.no_telp_wali,
+        alamat: updatedSiswa.alamat,
+      },
+    };
+  }
 }
