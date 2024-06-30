@@ -87,4 +87,45 @@ export class PelanggaranService {
       },
     };
   }
+
+  public async findAll(): Promise<{ data: PelanggaranResponse[] }> {
+    const pelanggaran = await this.entityManager.find(Pelanggaran, {
+      order: {
+        createdAt: 'DESC',
+      },
+    });
+
+    return {
+      data: pelanggaran.map((item) => ({
+        id: item.id,
+        tipe_pelanggaran: {
+          nama_tipe_pelanggaran: item.tipePelanggaranId
+            ? item.tipePelanggaranId.nama_tipe_pelanggaran
+            : null,
+        },
+        siswa: {
+          nama_lengkap: item.siswaId ? item.siswaId.nama_lengkap : null,
+          kelas: {
+            nama_kelas: item.siswaId?.kelasId
+              ? item.siswaId.kelasId.nama_kelas
+              : null,
+            jurusan: {
+              nama_jurusan: item.siswaId?.kelasId?.jurusanId
+                ? item.siswaId.kelasId.jurusanId.nama_jurusan
+                : null,
+            },
+            guru: {
+              nama_lengkap: item.siswaId?.kelasId?.guruId
+                ? item.siswaId.kelasId.guruId.nama_lengkap
+                : null,
+            },
+          },
+          nama_wali: item.siswaId ? item.siswaId.nama_wali : null,
+          no_telp_wali: item.siswaId ? item.siswaId.no_telp_wali : null,
+          alamat: item.siswaId ? item.siswaId.alamat : null,
+        },
+        keterangan: item.keterangan,
+      })),
+    };
+  }
 }
