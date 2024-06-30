@@ -1,7 +1,9 @@
+import { Pelanggaran } from 'src/api/pelanggaran/entities/pelanggaran.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -30,6 +32,9 @@ export class TipePelanggaran {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   updatedAt: Date;
+
+  @OneToMany(() => Pelanggaran, (pelanggaran) => pelanggaran.tipePelanggaranId)
+  pelanggaran: Pelanggaran[];
 
   constructor(partial: Partial<TipePelanggaran>) {
     Object.assign(this, partial);

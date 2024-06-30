@@ -1,11 +1,13 @@
 import { Kelas } from 'src/api/kelas/entities/kelas.entity';
 import { Agama } from 'src/api/master/agama/entities/agama.entity';
+import { Pelanggaran } from 'src/api/pelanggaran/entities/pelanggaran.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -97,6 +99,9 @@ export class Siswa {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   updatedAt: Date;
+
+  @OneToMany(() => Pelanggaran, (pelanggaran) => pelanggaran.siswaId)
+  pelanggaran: Pelanggaran[];
 
   constructor(partial: Partial<Siswa>) {
     Object.assign(this, partial);
