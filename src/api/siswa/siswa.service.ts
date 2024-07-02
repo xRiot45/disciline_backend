@@ -73,16 +73,20 @@ export class SiswaService {
         tempat_lahir: siswa.tempat_lahir,
         jenis_kelamin: siswa.jenis_kelamin,
         kelas: {
+          id: kelas ? kelas.id : null,
           nama_kelas: kelas ? kelas.nama_kelas : null,
           jurusan: {
+            id: kelas ? kelas.jurusanId.id : null,
             nama_jurusan: kelas ? kelas.jurusanId.nama_jurusan : null,
           },
           guru: {
+            id: kelas ? kelas.guruId.id : null,
             nama_lengkap: kelas ? kelas.guruId.nama_lengkap : null,
           },
         },
 
         agama: {
+          id: agama ? agama.id : null,
           nama_agama: agama ? agama.nama_agama : null,
         },
 
@@ -110,13 +114,16 @@ export class SiswaService {
         tempat_lahir: item.tempat_lahir,
         jenis_kelamin: item.jenis_kelamin,
         kelas: {
+          id: item.kelasId ? item.kelasId.id : null,
           nama_kelas: item.kelasId ? item.kelasId.nama_kelas : null,
           jurusan: {
+            id: item.kelasId ? item.kelasId.jurusanId.id : null,
             nama_jurusan: item.kelasId
               ? item.kelasId.jurusanId.nama_jurusan
               : null,
           },
           guru: {
+            id: item.kelasId ? item.kelasId.guruId.id : null,
             nama_lengkap: item.kelasId
               ? item.kelasId.guruId.nama_lengkap
               : null,
@@ -124,6 +131,7 @@ export class SiswaService {
         },
 
         agama: {
+          id: item.agamaId ? item.agamaId.id : null,
           nama_agama: item.agamaId ? item.agamaId.nama_agama : null,
         },
 
@@ -155,13 +163,16 @@ export class SiswaService {
         tempat_lahir: siswa.tempat_lahir,
         jenis_kelamin: siswa.jenis_kelamin,
         kelas: {
+          id: siswa.kelasId ? siswa.kelasId.id : null,
           nama_kelas: siswa.kelasId ? siswa.kelasId.nama_kelas : null,
           jurusan: {
+            id: siswa.kelasId ? siswa.kelasId.jurusanId.id : null,
             nama_jurusan: siswa.kelasId
               ? siswa.kelasId.jurusanId.nama_jurusan
               : null,
           },
           guru: {
+            id: siswa.kelasId ? siswa.kelasId.guruId.id : null,
             nama_lengkap: siswa.kelasId
               ? siswa.kelasId.guruId.nama_lengkap
               : null,
@@ -169,6 +180,7 @@ export class SiswaService {
         },
 
         agama: {
+          id: siswa.agamaId ? siswa.agamaId.id : null,
           nama_agama: siswa.agamaId ? siswa.agamaId.nama_agama : null,
         },
 
@@ -253,16 +265,20 @@ export class SiswaService {
         tempat_lahir: updatedSiswa.tempat_lahir,
         jenis_kelamin: updatedSiswa.jenis_kelamin,
         kelas: {
+          id: kelas ? kelas.id : null,
           nama_kelas: kelas ? kelas.nama_kelas : null,
           jurusan: {
+            id: kelas ? kelas.jurusanId.id : null,
             nama_jurusan: kelas ? kelas.jurusanId.nama_jurusan : null,
           },
           guru: {
+            id: kelas ? kelas.guruId.id : null,
             nama_lengkap: kelas ? kelas.guruId.nama_lengkap : null,
           },
         },
 
         agama: {
+          id: agama ? agama.id : null,
           nama_agama: agama ? agama.nama_agama : null,
         },
 

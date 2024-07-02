@@ -21,14 +21,18 @@ export class SiswaResponse {
   tempat_lahir: string;
   jenis_kelamin: string;
   agama: {
+    id: string;
     nama_agama: string;
   };
   kelas: {
+    id: string;
     nama_kelas: string;
     jurusan: {
+      id: string;
       nama_jurusan: string;
     };
     guru: {
+      id: string;
       nama_lengkap: string;
     };
   };
