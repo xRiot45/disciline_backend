@@ -14,10 +14,22 @@ export class GuruResponse {
   id: string;
   nama_lengkap: string;
   nip: string;
-  status: { nama_status: string };
-  jabatan: { nama_jabatan: string };
-  golongan: { nama_golongan: string };
-  agama: { nama_agama: string };
+  status: {
+    id: string;
+    nama_status: string;
+  };
+  jabatan: {
+    id: string;
+    nama_jabatan: string;
+  };
+  golongan: {
+    id: string;
+    nama_golongan: string;
+  };
+  agama: {
+    id: string;
+    nama_agama: string;
+  };
   jenis_kelamin: string;
   no_telp: string;
   alamat: string;

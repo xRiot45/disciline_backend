@@ -78,15 +78,19 @@ export class GuruService {
         nama_lengkap: savedGuru.nama_lengkap,
         nip: savedGuru.nip,
         status: {
+          id: status ? status.id : null,
           nama_status: status ? status.nama_status : null,
         },
         jabatan: {
+          id: jabatan ? jabatan.id : null,
           nama_jabatan: jabatan ? jabatan.nama_jabatan : null,
         },
         golongan: {
+          id: golongan ? golongan.id : null,
           nama_golongan: golongan ? golongan.nama_golongan : null,
         },
         agama: {
+          id: agama ? agama.id : null,
           nama_agama: agama ? agama.nama_agama : null,
         },
         jenis_kelamin: savedGuru.jenis_kelamin,
@@ -109,15 +113,19 @@ export class GuruService {
         nama_lengkap: item.nama_lengkap,
         nip: item.nip,
         status: {
+          id: item.statusId ? item.statusId.id : null,
           nama_status: item.statusId ? item.statusId.nama_status : null,
         },
         jabatan: {
+          id: item.jabatanId ? item.jabatanId.id : null,
           nama_jabatan: item.jabatanId ? item.jabatanId.nama_jabatan : null,
         },
         golongan: {
+          id: item.golonganId ? item.golonganId.id : null,
           nama_golongan: item.golonganId ? item.golonganId.nama_golongan : null,
         },
         agama: {
+          id: item.agamaId ? item.agamaId.id : null,
           nama_agama: item.agamaId ? item.agamaId.nama_agama : null,
         },
         jenis_kelamin: item.jenis_kelamin,
@@ -146,15 +154,19 @@ export class GuruService {
         nama_lengkap: guru.nama_lengkap,
         nip: guru.nip,
         status: {
+          id: guru.statusId ? guru.statusId.id : null,
           nama_status: guru.statusId ? guru.statusId.nama_status : null,
         },
         jabatan: {
+          id: guru.jabatanId ? guru.jabatanId.id : null,
           nama_jabatan: guru.jabatanId ? guru.jabatanId.nama_jabatan : null,
         },
         golongan: {
+          id: guru.golonganId ? guru.golonganId.id : null,
           nama_golongan: guru.golonganId ? guru.golonganId.nama_golongan : null,
         },
         agama: {
+          id: guru.agamaId ? guru.agamaId.id : null,
           nama_agama: guru.agamaId ? guru.agamaId.nama_agama : null,
         },
         jenis_kelamin: guru.jenis_kelamin,
@@ -241,21 +253,25 @@ export class GuruService {
         nama_lengkap: updatedGuru.nama_lengkap,
         nip: updatedGuru.nip,
         status: {
+          id: updatedGuru.statusId ? updatedGuru.statusId.id : null,
           nama_status: updatedGuru.statusId
             ? updatedGuru.statusId.nama_status
             : null,
         },
         jabatan: {
+          id: updatedGuru.jabatanId ? updatedGuru.jabatanId.id : null,
           nama_jabatan: updatedGuru.jabatanId
             ? updatedGuru.jabatanId.nama_jabatan
             : null,
         },
         golongan: {
+          id: updatedGuru.golonganId ? updatedGuru.golonganId.id : null,
           nama_golongan: updatedGuru.golonganId
             ? updatedGuru.golonganId.nama_golongan
             : null,
         },
         agama: {
+          id: updatedGuru.agamaId ? updatedGuru.agamaId.id : null,
           nama_agama: updatedGuru.agamaId
             ? updatedGuru.agamaId.nama_agama
             : null,
