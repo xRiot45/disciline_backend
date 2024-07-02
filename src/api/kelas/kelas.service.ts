@@ -68,9 +68,11 @@ export class KelasService {
         id: savedKelas.id,
         nama_kelas: savedKelas.nama_kelas,
         jurusan: {
+          id: jurusan ? jurusan.id : null,
           nama_jurusan: jurusan ? jurusan.nama_jurusan : null,
         },
         guru: {
+          id: guru ? guru.id : null,
           nama_guru: guru ? guru.nama_lengkap : null,
           no_telp: guru ? guru.no_telp : null,
         },
@@ -90,9 +92,11 @@ export class KelasService {
         id: item.id,
         nama_kelas: item.nama_kelas,
         jurusan: {
+          id: item.jurusanId ? item.jurusanId.id : null,
           nama_jurusan: item.jurusanId ? item.jurusanId.nama_jurusan : null,
         },
         guru: {
+          id: item.guruId ? item.guruId.id : null,
           nama_guru: item.guruId ? item.guruId.nama_lengkap : null,
           no_telp: item.guruId ? item.guruId.no_telp : null,
         },
@@ -118,9 +122,11 @@ export class KelasService {
         id: kelas.id,
         nama_kelas: kelas.nama_kelas,
         jurusan: {
+          id: kelas.jurusanId ? kelas.jurusanId.id : null,
           nama_jurusan: kelas.jurusanId ? kelas.jurusanId.nama_jurusan : null,
         },
         guru: {
+          id: kelas.guruId ? kelas.guruId.id : null,
           nama_guru: kelas.guruId ? kelas.guruId.nama_lengkap : null,
           no_telp: kelas.guruId ? kelas.guruId.no_telp : null,
         },
@@ -197,9 +203,11 @@ export class KelasService {
         id: updatedKelas.id,
         nama_kelas: updatedKelas.nama_kelas,
         jurusan: {
+          id: jurusan ? jurusan.id : null,
           nama_jurusan: jurusan ? jurusan.nama_jurusan : null,
         },
         guru: {
+          id: guru ? guru.id : null,
           nama_guru: guru ? guru.nama_lengkap : null,
           no_telp: guru ? guru.no_telp : null,
         },
