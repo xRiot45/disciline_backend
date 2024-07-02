@@ -10,7 +10,7 @@ import {
   Param,
   Patch,
 } from '@nestjs/common';
-import { PelanggaranRequest, PelanggaranResponse } from './dto/Pelanggaran.dto';
+import { PelanggaranRequest, PelanggaranResponse } from './dto/pelanggaran.dto';
 
 @Controller('/api/pelanggaran')
 export class PelanggaranController {

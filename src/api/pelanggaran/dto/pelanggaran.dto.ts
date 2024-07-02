@@ -7,11 +7,14 @@ export class PelanggaranRequest {
 export class PelanggaranResponse {
   id: string;
   tipe_pelanggaran: {
+    id: string;
     nama_tipe_pelanggaran: string;
   };
   siswa: {
+    id: string;
     nama_lengkap: string;
     kelas: {
+      id: string;
       nama_kelas: string;
       jurusan: {
         nama_jurusan: string;

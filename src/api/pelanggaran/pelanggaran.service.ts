@@ -5,7 +5,7 @@ import { TipePelanggaran } from '../master/tipe-pelanggaran/entities/tipe-pelang
 import { ValidationService } from 'src/common/validation/validation.service';
 import { PelanggaranValidation } from './pelanggaran.validation';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PelanggaranRequest, PelanggaranResponse } from './dto/Pelanggaran.dto';
+import { PelanggaranRequest, PelanggaranResponse } from './dto/pelanggaran.dto';
 
 @Injectable()
 export class PelanggaranService {
@@ -60,13 +60,16 @@ export class PelanggaranService {
       data: {
         id: pelanggaran.id,
         tipe_pelanggaran: {
+          id: tipePelanggaran ? tipePelanggaran.id : null,
           nama_tipe_pelanggaran: tipePelanggaran
             ? tipePelanggaran.nama_tipe_pelanggaran
             : null,
         },
         siswa: {
+          id: siswa ? siswa.id : null,
           nama_lengkap: siswa ? siswa.nama_lengkap : null,
           kelas: {
+            id: siswa?.kelasId ? siswa.kelasId.id : null,
             nama_kelas: siswa?.kelasId ? siswa.kelasId.nama_kelas : null,
             jurusan: {
               nama_jurusan: siswa?.kelasId?.jurusanId
@@ -99,13 +102,16 @@ export class PelanggaranService {
       data: pelanggaran.map((item) => ({
         id: item.id,
         tipe_pelanggaran: {
+          id: item.tipePelanggaranId ? item.tipePelanggaranId.id : null,
           nama_tipe_pelanggaran: item.tipePelanggaranId
             ? item.tipePelanggaranId.nama_tipe_pelanggaran
             : null,
         },
         siswa: {
+          id: item.siswaId ? item.siswaId.id : null,
           nama_lengkap: item.siswaId ? item.siswaId.nama_lengkap : null,
           kelas: {
+            id: item.siswaId?.kelasId ? item.siswaId.kelasId.id : null,
             nama_kelas: item.siswaId?.kelasId
               ? item.siswaId.kelasId.nama_kelas
               : null,
@@ -146,15 +152,22 @@ export class PelanggaranService {
       data: {
         id: pelanggaran.id,
         tipe_pelanggaran: {
+          id: pelanggaran.tipePelanggaranId
+            ? pelanggaran.tipePelanggaranId.id
+            : null,
           nama_tipe_pelanggaran: pelanggaran.tipePelanggaranId
             ? pelanggaran.tipePelanggaranId.nama_tipe_pelanggaran
             : null,
         },
         siswa: {
+          id: pelanggaran.siswaId ? pelanggaran.siswaId.id : null,
           nama_lengkap: pelanggaran.siswaId
             ? pelanggaran.siswaId.nama_lengkap
             : null,
           kelas: {
+            id: pelanggaran.siswaId?.kelasId
+              ? pelanggaran.siswaId.kelasId.id
+              : null,
             nama_kelas: pelanggaran.siswaId?.kelasId
               ? pelanggaran.siswaId.kelasId.nama_kelas
               : null,
@@ -241,13 +254,16 @@ export class PelanggaranService {
       data: {
         id: updatedPelanggaran.id,
         tipe_pelanggaran: {
+          id: tipePelanggaran ? tipePelanggaran.id : null,
           nama_tipe_pelanggaran: tipePelanggaran
             ? tipePelanggaran.nama_tipe_pelanggaran
             : null,
         },
         siswa: {
+          id: siswa ? siswa.id : null,
           nama_lengkap: siswa ? siswa.nama_lengkap : null,
           kelas: {
+            id: siswa?.kelasId ? siswa.kelasId.id : null,
             nama_kelas: siswa?.kelasId ? siswa.kelasId.nama_kelas : null,
             jurusan: {
               nama_jurusan: siswa?.kelasId?.jurusanId
