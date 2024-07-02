@@ -1,0 +1,2123 @@
+{
+	"info": {
+		"_postman_id": "3446071a-eda5-42d0-9bff-3021d1d51632",
+		"name": "Disciline",
+		"description": "Disciline is a RESTful API Student Offense Information System (SIPS) web application that aims to record, manage, and report offenses committed by students in the school environment. This application is designed to assist schools, such as teachers, homeroom teachers, and administrative staff, in monitoring and following up on student behavior effectively and efficiently.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24370790",
+		"_collection_link": "https://solar-spaceship-690690.postman.co/workspace/Team-Workspace~3f09cbbc-5ce7-4adf-8d80-63a348c6c82b/collection/24370790-3446071a-eda5-42d0-9bff-3021d1d51632?action=share&source=collection_link&creator=24370790"
+	},
+	"item": [
+		{
+			"name": "Users API",
+			"item": [
+				{
+					"name": "Users | SignUp Users API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin1\",\n    \"password\": \"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users | SignIn Users API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin1\",\n    \"password\": \"admin1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users | Get User By Access Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5MzgwOTkzLCJleHAiOjE3MTk0NjczOTN9.s_FSmKg1nJzlH3lxIiy5S_LnrKZpDa640USGTUOXNfY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users | Update Password API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5MzgwOTkzLCJleHAiOjE3MTk0NjczOTN9.s_FSmKg1nJzlH3lxIiy5S_LnrKZpDa640USGTUOXNfY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/update-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"update-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users | SignOut Users API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5MzgwOTkzLCJleHAiOjE3MTk0NjczOTN9.s_FSmKg1nJzlH3lxIiy5S_LnrKZpDa640USGTUOXNfY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/signout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Master",
+			"item": [
+				{
+					"name": "Agama API",
+					"item": [
+						{
+							"name": "Agama | Create Agama API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_agama\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/agama",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"agama"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agama | Get All Agama API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/agama",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"agama"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agama | Get Agama By ID API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/agama/608d60dc-48eb-4244-a2a5-40e31a8554d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"agama",
+										"608d60dc-48eb-4244-a2a5-40e31a8554d"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agama | Update Agama API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_agama\": \"hindu\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/agama/1788972a-1026-47a0-a435-437a64ede4f8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"agama",
+										"1788972a-1026-47a0-a435-437a64ede4f8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Agama | Delete Agama API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/agama/1788972a-1026-47a0-a435-437a64ede4f8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"agama",
+										"1788972a-1026-47a0-a435-437a64ede4f8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Status API",
+					"item": [
+						{
+							"name": "Status | Create Status API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_status\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status | Get All Status API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status | Get Status By ID APi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/status/39ce85ef-d7ca-409c-bebe-910cd4424b5e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"status",
+										"39ce85ef-d7ca-409c-bebe-910cd4424b5e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status | Update Status API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_status\": \"test2ad\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/status/39ce85ef-d7ca-409c-bebe-910cd4424b5e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"status",
+										"39ce85ef-d7ca-409c-bebe-910cd4424b5e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status | Delete Status API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/status/39ce85ef-d7ca-409c-bebe-910cd4424b5e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"status",
+										"39ce85ef-d7ca-409c-bebe-910cd4424b5e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jabatan API",
+					"item": [
+						{
+							"name": "Jabatan | Create Jabatan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_jabatan\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/jabatan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jabatan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jabatan | Get All Jabatan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/jabatan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jabatan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jabatan | Get Jabatan By ID API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/jabatan/9aacc944-fb39-404c-8db2-7b1048cec6ac",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jabatan",
+										"9aacc944-fb39-404c-8db2-7b1048cec6ac"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jabatan | Update Jabatan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_jabatan\": \"Guru Bahasa Inggris\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/jabatan/9aacc944-fb39-404c-8db2-7b1048cec6ac",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jabatan",
+										"9aacc944-fb39-404c-8db2-7b1048cec6ac"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jabatan | Delete Jabatan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/jabatan/3acf3e3e-d8a3-4b64-be42-8ba1c819d231",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jabatan",
+										"3acf3e3e-d8a3-4b64-be42-8ba1c819d231"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Golongan API",
+					"item": [
+						{
+							"name": "Golongan | Create Golongan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_golongan\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/golongan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"golongan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Golongan | Get All Golongan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/golongan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"golongan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Golongan | Get Golongan By ID API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/golongan/15e52854-4cf5-4c62-88c5-5671d6c4aef3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"golongan",
+										"15e52854-4cf5-4c62-88c5-5671d6c4aef3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Golongan | Update Golongan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_golongan\": \"Golongan 1 D\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/golongan/defde0fc-a020-4e0a-ba34-6d523d6b4820",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"golongan",
+										"defde0fc-a020-4e0a-ba34-6d523d6b4820"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Golongan | Delete Golongan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/golongan/e15453b7-2ea4-4a15-87e3-b8092b1fece9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"golongan",
+										"e15453b7-2ea4-4a15-87e3-b8092b1fece9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pendidikan API",
+					"item": [
+						{
+							"name": "Pendidikan | Create Pendidikan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_pendidikan\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/pendidikan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"pendidikan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pendidikan | Get All Pendidikan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/pendidikan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"pendidikan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pendidikan | Get Pendidikan By ID API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/pendidikan/1da74ad4-85f4-4302-86f8-8a22118f4ce9=",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"pendidikan",
+										"1da74ad4-85f4-4302-86f8-8a22118f4ce9="
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pendidikan | Update Pendidikan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_pendidikan\": \"S3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/pendidikan/5edcc4ea-69e0-4096-831e-efb884317aa7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"pendidikan",
+										"5edcc4ea-69e0-4096-831e-efb884317aa7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pendidikan | Delete Pendidikan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/pendidikan/5edcc4ea-69e0-4096-831e-efb884317aa7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"pendidikan",
+										"5edcc4ea-69e0-4096-831e-efb884317aa7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jurusan API",
+					"item": [
+						{
+							"name": "Jurusan | Create Jurusan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_jurusan\": \"test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/jurusan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jurusan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jurusan | Get All Jurusan APi",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/jurusan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jurusan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jurusan | Get Jurusan By ID API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/jurusan/86c0bf8e-c6fd-4a3f-b548-ca7afcca4ef2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jurusan",
+										"86c0bf8e-c6fd-4a3f-b548-ca7afcca4ef2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jurusan | Update Jurusan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_jurusan\": \"IPA\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/jurusan/86c0bf8e-c6fd-4a3f-b548-ca7afcca4ef2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jurusan",
+										"86c0bf8e-c6fd-4a3f-b548-ca7afcca4ef2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Jurusan | Delete Jurusan API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/jurusan/86c0bf8e-c6fd-4a3f-b548-ca7afcca4ef2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"jurusan",
+										"86c0bf8e-c6fd-4a3f-b548-ca7afcca4ef2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipe Pelanggaran API",
+					"item": [
+						{
+							"name": "TIpe Pelanggaran | Create Tipe Pelanggaran API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_tipe_pelanggaran\": \"Test\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/tipe-pelanggaran",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"tipe-pelanggaran"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tipe Pelanggaran | Get All Tipe Pelanggaran API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/tipe-pelanggaran",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"tipe-pelanggaran"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tipe Pelanggaran | Get Tipe Pelanggaran By ID API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/tipe-pelanggaran/bbde9b5a-7c38-4dff-a96d-b17ac12bc8b0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"tipe-pelanggaran",
+										"bbde9b5a-7c38-4dff-a96d-b17ac12bc8b0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TIpe Pelanggaran | Update Tipe Pelanggaran API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nama_tipe_pelanggaran\": \"test20\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/master/tipe-pelanggaran/cf850975-d858-4317-924e-60998f9e8bec",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"tipe-pelanggaran",
+										"cf850975-d858-4317-924e-60998f9e8bec"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tipe Pelanggaran | Delete Tipe Pelanggaran API",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/master/tipe-pelanggaran/cf850975-d858-4317-924e-60998f9e8bec",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"master",
+										"tipe-pelanggaran",
+										"cf850975-d858-4317-924e-60998f9e8bec"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Guru API",
+			"item": [
+				{
+					"name": "Guru | Create Guru API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTE5OTg5LCJleHAiOjE3MjAwMDYzODl9.-jYIIPbhc0ZGkg-eiYlUN7tff02kXKQl8ajwlFLmehA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_lengkap\": \"test\",\n    \"nip\": \"397493183035\",\n    \"statusId\": \"f826c3bc-4693-41ee-ab64-5defd2cf14e3\",\n    \"jabatanId\": \"b8226ec6-b3af-4904-8a1e-308d30d56e47\",\n    \"golonganId\": \"a8e184b2-92c3-40cc-ad86-bdce68bf3db9\",\n    \"agamaId\": \"3a9b3a2d-68ef-42df-a4e5-ce61afa7be67\",\n    \"jenis_kelamin\": \"Laki - Laki\",\n    \"no_telp\": \"08123456789\",\n    \"alamat\": \"Jl. Surya, Gg. Surya Suci\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/guru",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"guru"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guru | Get All Guru API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTE5OTg5LCJleHAiOjE3MjAwMDYzODl9.-jYIIPbhc0ZGkg-eiYlUN7tff02kXKQl8ajwlFLmehA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/guru",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"guru"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guru | Get Guru By ID API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTE5OTg5LCJleHAiOjE3MjAwMDYzODl9.-jYIIPbhc0ZGkg-eiYlUN7tff02kXKQl8ajwlFLmehA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/guru/aafbaf9f-f0e2-41a3-830c-e4a6d4b7307f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"guru",
+								"aafbaf9f-f0e2-41a3-830c-e4a6d4b7307f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guru | Update Guru API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_lengkap\": \"dasdas\",\n    \"nip\": \"397493183034\",\n    \"statusId\": \"f826c3bc-4693-41ee-ab64-5defd2cf14e3\",\n    \"jabatanId\": \"b8226ec6-b3af-4904-8a1e-308d30d56e47\",\n    \"golonganId\": \"a8e184b2-92c3-40cc-ad86-bdce68bf3db9\",\n    \"agamaId\": \"3a9b3a2d-68ef-42df-a4e5-ce61afa7be67\",\n    \"jenis_kelamin\": \"Laki - Laki\",\n    \"no_telp\": \"08123456789\",\n    \"alamat\": \"Jl. Surya, Gg. Surya Suci\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/guru/d53bea76-9ecd-4492-9b16-5e6292724183",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"guru",
+								"d53bea76-9ecd-4492-9b16-5e6292724183"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guru | Delete Guru API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/guru/d53bea76-9ecd-4492-9b16-5e6292724183",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"guru",
+								"d53bea76-9ecd-4492-9b16-5e6292724183"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kelas API",
+			"item": [
+				{
+					"name": "Kelas | Create Kelas API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kelas\": \"Test\",\n    \"jurusanId\": \"6a6eaf70-a2a3-4763-8e03-b3e2b7c070d4\",\n    \"guruId\": \"fc0edbc9-48e0-420b-8a69-b0f0c4805c8d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/kelas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"kelas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kelas | Get All Kelas API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTI0OTMxLCJleHAiOjE3MjAwMTEzMzF9.LdCjTOFusEoU-bKUo3R2yo4l2XD4zfRUh89lmsoCmI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/kelas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"kelas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kelas | Get Kelas By ID API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTI0OTMxLCJleHAiOjE3MjAwMTEzMzF9.LdCjTOFusEoU-bKUo3R2yo4l2XD4zfRUh89lmsoCmI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/kelas/e7ae591e-a0cf-4719-b22b-46ea8ce57cbb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"kelas",
+								"e7ae591e-a0cf-4719-b22b-46ea8ce57cbb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kelas | Update Kelas API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_kelas\": \"Kelas X MIPA C\",\n    \"jurusanId\": \"6a6eaf70-a2a3-4763-8e03-b3e2b7c070d4\",\n    \"guruId\": \"fc0edbc9-48e0-420b-8a69-b0f0c4805c8d\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/kelas/93355c04-9d3a-4385-a5e1-a82c8f13a0e5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"kelas",
+								"93355c04-9d3a-4385-a5e1-a82c8f13a0e5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kelas | Delete Kelas API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NDY3NzcyLCJleHAiOjE3MTk1NTQxNzJ9.DulLMbppDqpIrWj34I4hAtqtOkRiDIhNOd6zZDEDIQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/kelas/93355c04-9d3a-4385-a5e1-a82c8f13a0e5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"kelas",
+								"93355c04-9d3a-4385-a5e1-a82c8f13a0e5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Siswa API",
+			"item": [
+				{
+					"name": "Siswa | Create Siswa API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NzI4MzAyLCJleHAiOjE3MTk4MTQ3MDJ9.nwfZuNQ1ay1J5z9HfM6Du8t6YXTIL585kmKHrYS4A2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_lengkap\": \"test\",\n    \"nis\": \"38541\",\n    \"nisn\": \"4197383910\",\n    \"tanggal_lahir\": \"18 Maret 2000\",\n    \"tempat_lahir\": \"Pontianak\",\n    \"jenis_kelamin\": \"Perempuan\",\n    \"agamaId\": \"608d60dc-48eb-4244-a2a5-40e31a8554de\",\n    \"kelasId\": \"182a0323-f662-4cb6-a0e5-b2e112782fa0\",\n    \"nama_wali\": \"Hadi\",\n    \"no_telp_wali\": \"0812345678\",\n    \"alamat\": \"Jl.Purnama\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/siswa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"siswa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Siswa | Get All Siswa API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTI0OTMxLCJleHAiOjE3MjAwMTEzMzF9.LdCjTOFusEoU-bKUo3R2yo4l2XD4zfRUh89lmsoCmI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/siswa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"siswa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Siswa | Get Siswa By ID API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NzI4MzAyLCJleHAiOjE3MTk4MTQ3MDJ9.nwfZuNQ1ay1J5z9HfM6Du8t6YXTIL585kmKHrYS4A2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/siswa/07cfd2d4-6d31-4c2d-9e88-1d1b9d4ecd6b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"siswa",
+								"07cfd2d4-6d31-4c2d-9e88-1d1b9d4ecd6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Siswa | Update Siswa API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NzI4MzAyLCJleHAiOjE3MTk4MTQ3MDJ9.nwfZuNQ1ay1J5z9HfM6Du8t6YXTIL585kmKHrYS4A2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_lengkap\": \"test23\",\n    \"nis\": \"328541\",\n    \"nisn\": \"419738392310\",\n    \"tanggal_lahir\": \"18 Maret 2000\",\n    \"tempat_lahir\": \"Pontianak\",\n    \"jenis_kelamin\": \"Perempuan\",\n    \"agamaId\": \"608d60dc-48eb-4244-a2a5-40e31a8554de\",\n    \"kelasId\": \"182a0323-f662-4cb6-a0e5-b2e112782fa0\",\n    \"nama_wali\": \"Hadi\",\n    \"no_telp_wali\": \"0812345678\",\n    \"alamat\": \"Jl.Purnama\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/siswa/20151e8d-c723-430d-823e-4f264a8e6299",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"siswa",
+								"20151e8d-c723-430d-823e-4f264a8e6299"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Siswa | Delete Siswa API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NzI4MzAyLCJleHAiOjE3MTk4MTQ3MDJ9.nwfZuNQ1ay1J5z9HfM6Du8t6YXTIL585kmKHrYS4A2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/siswa/20151e8d-c723-430d-823e-4f264a8e6299",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"siswa",
+								"20151e8d-c723-430d-823e-4f264a8e6299"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pelanggaran API",
+			"item": [
+				{
+					"name": "Pelanggaran | Create Pelanggaran API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NzI4MzAyLCJleHAiOjE3MTk4MTQ3MDJ9.nwfZuNQ1ay1J5z9HfM6Du8t6YXTIL585kmKHrYS4A2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipePelanggaranId\": \"f10d1644-ef82-4421-98c6-fb71c77cdc83\",\n    \"siswaId\": \"07cfd2d4-6d31-4c2d-9e88-1d1b9d4ecd6b\",\n    \"keterangan\": \"Mencontek saat ulangan bahasa indonesia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/pelanggaran",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pelanggaran"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pelanggaran | Get Pelanggaran API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5OTI0OTMxLCJleHAiOjE3MjAwMTEzMzF9.LdCjTOFusEoU-bKUo3R2yo4l2XD4zfRUh89lmsoCmI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pelanggaran",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pelanggaran"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pelanggaran | Get Pelanggaran By ID API",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pelanggaran/cf3c5079-84ed-42d5-abd5-6c2bfec1faeb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pelanggaran",
+								"cf3c5079-84ed-42d5-abd5-6c2bfec1faeb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pelanggaran | Update Pelanggaran API",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE5NzI4MzAyLCJleHAiOjE3MTk4MTQ3MDJ9.nwfZuNQ1ay1J5z9HfM6Du8t6YXTIL585kmKHrYS4A2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipePelanggaranId\": \"f10d1644-ef82-4421-98c6-fb71c77cdc83\",\n    \"siswaId\": \"07cfd2d4-6d31-4c2d-9e88-1d1b9d4ecd6b\",\n    \"keterangan\": \"Mencontek saat ulangan bahasa inggris\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/pelanggaran/cf3c5079-84ed-42d5-abd5-6c2bfec1faeb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pelanggaran",
+								"cf3c5079-84ed-42d5-abd5-6c2bfec1faeb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
