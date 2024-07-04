@@ -1,7 +1,9 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { AgamaService } from './agama.service';
 import { AgamaRequest, AgamaResponse } from './dto/agama.dto';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Post,
@@ -12,8 +14,6 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { WebResponse } from 'src/common/dto/web.dto';
-import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Agama')
 @Controller('/api/master/agama')
