@@ -3,6 +3,7 @@ import { AdminGuard } from 'src/common/guard/admin.guard';
 import { WebResponse } from 'src/common/dto/web.dto';
 import { JabatanService } from './jabatan.service';
 import { JabatanRequest, JabatanResponse } from './dto/jabatan.dto';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Post,
@@ -14,11 +15,16 @@ import {
   Delete,
 } from '@nestjs/common';
 
+@ApiTags('Jabatan')
 @Controller('/api/master/jabatan')
 export class JabatanController {
   constructor(private readonly jabatanService: JabatanService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Jabatan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async create(
     @Body() req: JabatanRequest,
@@ -27,13 +33,21 @@ export class JabatanController {
   }
 
   @Get()
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get All Data Jabatan',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findAll(): Promise<{ data: JabatanResponse[] }> {
     return this.jabatanService.findAll();
   }
 
   @Get('/:jabatanId')
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get Data Jabatan By ID',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findById(
     @Param('jabatanId') jabatanId: string,
   ): Promise<{ data: JabatanResponse }> {
@@ -41,6 +55,10 @@ export class JabatanController {
   }
 
   @Put('/:jabatanId')
+  @ApiOperation({
+    summary: 'Update Jabatan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async update(
     @Param('jabatanId') jabatanId: string,
@@ -50,6 +68,10 @@ export class JabatanController {
   }
 
   @Delete('/:jabatanId')
+  @ApiOperation({
+    summary: 'Delete Jabatan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async delete(
     @Param('jabatanId') jabatanId: string,

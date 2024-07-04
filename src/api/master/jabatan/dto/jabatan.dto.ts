@@ -1,4 +1,10 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class JabatanRequest {
+  @ApiProperty({
+    type: String,
+    description: 'Nama Jabatan',
+  })
   nama_jabatan: string;
 }
 
