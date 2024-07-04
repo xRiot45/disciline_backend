@@ -2,6 +2,7 @@ import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { WebResponse } from 'src/common/dto/web.dto';
 import { TipePelanggaranService } from './tipe-pelanggaran.service';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
   TipePelanggaranRequest,
   TipePelanggaranResponse,
@@ -16,7 +17,6 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Tipe Pelanggaran')
 @Controller('/api/master/tipe-pelanggaran')
