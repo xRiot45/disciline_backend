@@ -1,6 +1,22 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class PelanggaranRequest {
+  @ApiProperty({
+    type: String,
+    description: 'Tipe Pelanggaran ID',
+  })
   tipePelanggaranId: string;
+
+  @ApiProperty({
+    type: String,
+    description: 'Siswa ID',
+  })
   siswaId: string;
+
+  @ApiProperty({
+    type: String,
+    description: 'Keterangan',
+  })
   keterangan: string;
 }
 
