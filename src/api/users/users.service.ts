@@ -7,12 +7,12 @@ import { UsersValidation } from './users.validation';
 import { ValidationService } from '../../common/validation/validation.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {
-  SignInUsersDtoRequest,
-  SignInUsersDtoResponse,
-  SignUpUsersDtoRequest,
-  SignUpUsersDtoResponse,
-  UpdatePasswordDtoRequest,
-  UsersDtoResponse,
+  SignInUsersRequest,
+  SignInUsersResponse,
+  SignUpUsersRequest,
+  SignUpUsersResponse,
+  UpdatePasswordRequest,
+  UsersResponse,
 } from './dto/users.dto';
 
 @Injectable()
@@ -24,8 +24,8 @@ export class UsersService {
   ) {}
 
   public async signUp(
-    req: SignUpUsersDtoRequest,
-  ): Promise<{ data: SignUpUsersDtoResponse }> {
+    req: SignUpUsersRequest,
+  ): Promise<{ data: SignUpUsersResponse }> {
     const signupRequest = this.validationService.validate(
       UsersValidation.SIGNUP,
       req,
@@ -60,8 +60,8 @@ export class UsersService {
   }
 
   public async signIn(
-    req: SignInUsersDtoRequest,
-  ): Promise<{ data: SignInUsersDtoResponse }> {
+    req: SignInUsersRequest,
+  ): Promise<{ data: SignInUsersResponse }> {
     const signinRequest = this.validationService.validate(
       UsersValidation.SIGNIN,
       req,
@@ -94,7 +94,7 @@ export class UsersService {
     }
   }
 
-  public async getUser(user: Users): Promise<{ data: UsersDtoResponse }> {
+  public async getUser(user: Users): Promise<{ data: UsersResponse }> {
     const dataUser = await this.entityManager.findOne(Users, {
       where: {
         id: user.id,
@@ -112,7 +112,7 @@ export class UsersService {
 
   public async updatePassword(
     user: Users,
-    req: UpdatePasswordDtoRequest,
+    req: UpdatePasswordRequest,
   ): Promise<WebResponse> {
     const updateRequest = this.validationService.validate(
       UsersValidation.UPDATE,
