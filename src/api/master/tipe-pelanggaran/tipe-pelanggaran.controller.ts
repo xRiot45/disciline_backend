@@ -16,7 +16,9 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Tipe Pelanggaran')
 @Controller('/api/master/tipe-pelanggaran')
 export class TipePelanggaranController {
   constructor(
@@ -24,6 +26,10 @@ export class TipePelanggaranController {
   ) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Tipe Pelanggaran',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AdminGuard, AuthGuard)
   public async create(
     @Body() req: TipePelanggaranRequest,
@@ -32,13 +38,21 @@ export class TipePelanggaranController {
   }
 
   @Get()
-  @UseGuards(AdminGuard, AuthGuard)
+  @ApiOperation({
+    summary: 'Get All Data Tipe Pelanggaran',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findAll(): Promise<{ data: TipePelanggaranResponse[] }> {
     return this.tipePelanggaranService.findAll();
   }
 
   @Get('/:tipePelanggaranId')
-  @UseGuards(AdminGuard, AuthGuard)
+  @ApiOperation({
+    summary: 'Get Data Tipe Pelanggaran By ID',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findById(
     @Param('tipePelanggaranId') tipePelanggaranId: string,
   ): Promise<{ data: TipePelanggaranResponse }> {
@@ -46,6 +60,10 @@ export class TipePelanggaranController {
   }
 
   @Put('/:tipePelanggaranId')
+  @ApiOperation({
+    summary: 'Update Tipe Pelanggaran',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AdminGuard, AuthGuard)
   public async update(
     @Param('tipePelanggaranId') tipePelanggaranId: string,
@@ -55,6 +73,10 @@ export class TipePelanggaranController {
   }
 
   @Delete('/:tipePelanggaranId')
+  @ApiOperation({
+    summary: 'Delete Tipe Pelanggaran',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AdminGuard, AuthGuard)
   public async delete(
     @Param('tipePelanggaranId') tipePelanggaranId: string,
