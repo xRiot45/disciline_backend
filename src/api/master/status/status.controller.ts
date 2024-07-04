@@ -3,6 +3,7 @@ import { AdminGuard } from 'src/common/guard/admin.guard';
 import { WebResponse } from 'src/common/dto/web.dto';
 import { StatusService } from './status.service';
 import { StatusRequest, StatusResponse } from './dto/status.dto';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Post,
@@ -13,7 +14,6 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Status')
 @Controller('/api/master/status')
