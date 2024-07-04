@@ -1,4 +1,10 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class StatusRequest {
+  @ApiProperty({
+    type: String,
+    description: 'Nama Status',
+  })
   nama_status: string;
 }
 

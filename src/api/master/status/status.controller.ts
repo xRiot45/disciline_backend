@@ -13,12 +13,18 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Status')
 @Controller('/api/master/status')
 export class StatusController {
   constructor(private readonly statusService: StatusService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Status',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async create(
     @Body() req: StatusRequest,
@@ -27,13 +33,21 @@ export class StatusController {
   }
 
   @Get()
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get All Data Status',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findAll(): Promise<{ data: StatusResponse[] }> {
     return this.statusService.findAll();
   }
 
   @Get('/:statusId')
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get Data Status By ID',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findById(
     @Param('statusId') statusId: string,
   ): Promise<{ data: StatusResponse }> {
@@ -41,6 +55,10 @@ export class StatusController {
   }
 
   @Put('/:statusId')
+  @ApiOperation({
+    summary: 'Update Status',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async update(
     @Param('statusId') statusId: string,
@@ -50,6 +68,10 @@ export class StatusController {
   }
 
   @Delete('/:statusId')
+  @ApiOperation({
+    summary: 'Delete Status',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async delete(
     @Param('statusId') statusId: string,
