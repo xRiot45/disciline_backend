@@ -1,7 +1,9 @@
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { AdminGuard } from 'src/common/guard/admin.guard';
 import { SiswaService } from './siswa.service';
+import { WebResponse } from 'src/common/dto/web.dto';
 import { SiswaRequest, SiswaResponse } from './dto/siswa.dto';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Post,
@@ -12,13 +14,17 @@ import {
   Patch,
   Delete,
 } from '@nestjs/common';
-import { WebResponse } from 'src/common/dto/web.dto';
 
+@ApiTags('Siswa')
 @Controller('/api/siswa')
 export class SiswaController {
   constructor(private readonly siswaService: SiswaService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Siswa',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async create(
     @Body() req: SiswaRequest,
@@ -27,12 +33,20 @@ export class SiswaController {
   }
 
   @Get()
+  @ApiOperation({
+    summary: 'Get All Data Siswa',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async findAll(): Promise<{ data: SiswaResponse[] }> {
     return this.siswaService.findAll();
   }
 
   @Get('/:siswaId')
+  @ApiOperation({
+    summary: 'Get Data Siswa By ID',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async findById(
     @Param('siswaId') siswaId: string,
@@ -41,6 +55,10 @@ export class SiswaController {
   }
 
   @Patch('/:siswaId')
+  @ApiOperation({
+    summary: 'Update Data Siswa',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async update(
     @Param('siswaId') siswaId: string,
@@ -50,6 +68,10 @@ export class SiswaController {
   }
 
   @Delete('/:siswaId')
+  @ApiOperation({
+    summary: 'Delete Data Siswa',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async delete(@Param('siswaId') siswaId: string): Promise<WebResponse> {
     return this.siswaService.delete(siswaId);
