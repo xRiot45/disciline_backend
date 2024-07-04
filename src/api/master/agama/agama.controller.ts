@@ -13,12 +13,18 @@ import {
   Delete,
 } from '@nestjs/common';
 import { WebResponse } from 'src/common/dto/web.dto';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Agama')
 @Controller('/api/master/agama')
 export class AgamaController {
   constructor(private readonly agamaService: AgamaService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Agama',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AdminGuard, AuthGuard)
   public async create(
     @Body() req: AgamaRequest,
@@ -27,12 +33,20 @@ export class AgamaController {
   }
 
   @Get()
+  @ApiOperation({
+    summary: 'Get All Data Agama',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard)
   public async findAll(): Promise<{ data: AgamaResponse[] }> {
     return this.agamaService.findAll();
   }
 
   @Get('/:agamaId')
+  @ApiOperation({
+    summary: 'Get Data Agama By ID',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard)
   public async findById(
     @Param('agamaId') agamaId: string,
@@ -41,6 +55,10 @@ export class AgamaController {
   }
 
   @Put('/:agamaId')
+  @ApiOperation({
+    summary: 'Update Agama',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AdminGuard, AuthGuard)
   public async update(
     @Param('agamaId') agamaId: string,
@@ -50,6 +68,10 @@ export class AgamaController {
   }
 
   @Delete('/:agamaId')
+  @ApiOperation({
+    summary: 'Delete Agama',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AdminGuard, AuthGuard)
   public async delete(@Param('agamaId') agamaId: string): Promise<WebResponse> {
     return this.agamaService.delete(agamaId);
