@@ -13,12 +13,18 @@ import {
   Patch,
   Delete,
 } from '@nestjs/common';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Guru')
 @Controller('/api/guru')
 export class GuruController {
   constructor(private readonly guruService: GuruService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Guru',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async create(
     @Body() req: GuruRequest,
@@ -27,12 +33,20 @@ export class GuruController {
   }
 
   @Get()
+  @ApiOperation({
+    summary: 'Get All Data Guru',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async findAll(): Promise<{ data: GuruResponse[] }> {
     return this.guruService.findAll();
   }
 
   @Get('/:guruId')
+  @ApiOperation({
+    summary: 'Get Data Guru By ID',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async findById(
     @Param('guruId') guruId: string,
@@ -41,6 +55,10 @@ export class GuruController {
   }
 
   @Patch('/:guruId')
+  @ApiOperation({
+    summary: 'Update Guru',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async update(
     @Param('guruId') guruId: string,
@@ -50,6 +68,10 @@ export class GuruController {
   }
 
   @Delete('/:guruId')
+  @ApiOperation({
+    summary: 'Delete Guru',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async delete(@Param('guruId') guruId: string): Promise<WebResponse> {
     return this.guruService.delete(guruId);
