@@ -13,12 +13,18 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Pendidikan')
 @Controller('/api/master/pendidikan')
 export class PendidikanController {
   constructor(private readonly pendidikanService: PendidikanService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Pendidikan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async create(
     @Body() req: PendidikanRequest,
@@ -27,13 +33,21 @@ export class PendidikanController {
   }
 
   @Get()
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get All Data Pendidikan',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findAll(): Promise<{ data: PendidikanResponse[] }> {
     return this.pendidikanService.findAll();
   }
 
   @Get('/:pendidikanId')
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get Data Pendidikan By ID',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findById(
     @Param('pendidikanId') pendidikanId: string,
   ): Promise<{ data: PendidikanResponse }> {
@@ -41,6 +55,10 @@ export class PendidikanController {
   }
 
   @Put('/:pendidikanId')
+  @ApiOperation({
+    summary: 'Update Pendidikan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async update(
     @Param('pendidikanId') pendidikanId: string,
@@ -50,6 +68,10 @@ export class PendidikanController {
   }
 
   @Delete('/:pendidikanId')
+  @ApiOperation({
+    summary: 'Delete Pendidikan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async delete(
     @Param('pendidikanId') pendidikanId: string,
