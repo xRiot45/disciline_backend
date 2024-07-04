@@ -3,6 +3,7 @@ import { AdminGuard } from 'src/common/guard/admin.guard';
 import { WebResponse } from 'src/common/dto/web.dto';
 import { GolonganService } from './golongan.service';
 import { GolonganRequest, GolonganResponse } from './dto/golongan.dto';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Post,
@@ -14,11 +15,16 @@ import {
   Delete,
 } from '@nestjs/common';
 
+@ApiTags('Golongan')
 @Controller('/api/master/golongan')
 export class GolonganController {
   constructor(private readonly golonganService: GolonganService) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create Golongan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async create(
     @Body() req: GolonganRequest,
@@ -27,13 +33,21 @@ export class GolonganController {
   }
 
   @Get()
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get All Data Golongan',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findAll(): Promise<{ data: GolonganResponse[] }> {
     return this.golonganService.findAll();
   }
 
   @Get('/:golonganId')
-  @UseGuards(AuthGuard, AdminGuard)
+  @ApiOperation({
+    summary: 'Get Data Golongan By ID',
+  })
+  @ApiSecurity('bearer')
+  @UseGuards(AuthGuard)
   public async findById(
     @Param('golonganId') golonganId: string,
   ): Promise<{ data: GolonganResponse }> {
@@ -41,6 +55,10 @@ export class GolonganController {
   }
 
   @Put('/:golonganId')
+  @ApiOperation({
+    summary: 'Update Golongan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async update(
     @Param('golonganId') golonganId: string,
@@ -50,6 +68,10 @@ export class GolonganController {
   }
 
   @Delete('/:golonganId')
+  @ApiOperation({
+    summary: 'Delete Golongan',
+  })
+  @ApiSecurity('bearer')
   @UseGuards(AuthGuard, AdminGuard)
   public async delete(
     @Param('golonganId') golonganId: string,
