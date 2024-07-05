@@ -23,7 +23,7 @@ describe('TESTING_AGAMA_API', () => {
       const response = await request(app.getHttpServer())
         .post('/api/master/agama')
         .send({
-          nama_agama: 'Delete agama',
+          nama_agama: 'Delete agama 2',
         })
         .set(
           'Authorization',
@@ -265,6 +265,54 @@ describe('TESTING_AGAMA_API', () => {
         );
 
       expect(response.status).toBe(404);
+      expect(response.body.errors).toBeDefined();
+    });
+  });
+
+  // Delete agama API testing
+  describe('TESTING_AGAMA_API_005', () => {
+    // Scenario 1 : Should return 200 if delete agama success
+    it('Should return 200 if delete agama success', async () => {
+      const response = await request(app.getHttpServer())
+        .delete('/api/master/agama/b9c21d19-42d0-48ee-82ba-b21d6baf692e')
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzIwMTgwNzI2LCJleHAiOjE3MjAyNjcxMjZ9.4yV1mDnkYYMPNSAH6jUF6D--870rt2HHk2blQn7EvOw',
+        );
+
+      expect(response.status).toBe(200);
+    });
+
+    // Scenario 2 : Should return 404 if agama ID not found
+    it('Should return 404 if agama ID not found', async () => {
+      const response = await request(app.getHttpServer())
+        .delete('/api/master/agama/test')
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzIwMTgwNzI2LCJleHAiOjE3MjAyNjcxMjZ9.4yV1mDnkYYMPNSAH6jUF6D--870rt2HHk2blQn7EvOw',
+        );
+
+      expect(response.status).toBe(404);
+      expect(response.body.errors).toBeDefined();
+    });
+
+    // Scenario 3 : Should return 401 if token not found
+    it('should return 401 if token not found!', async () => {
+      const response = await request(app.getHttpServer()).delete(
+        '/api/master/agama/c9ea047b-4d9e-41f2-a0af-2d96d586c347',
+      );
+
+      expect(response.status).toBe(401);
+      expect(response.body.errors).toBeDefined();
+    });
+
+    // Scenario 4 : Should return 401 if token invalid
+    it('should return 401 if token invalid!', async () => {
+      const response = await request(app.getHttpServer())
+        .delete('/api/master/agama/b9c21d19-42d0-48ee-82ba-b21d6baf692e')
+        .set('Authorization', 'test');
+
+      expect(response.status).toBe(401);
       expect(response.body.errors).toBeDefined();
     });
   });
