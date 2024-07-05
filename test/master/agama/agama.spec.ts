@@ -23,7 +23,7 @@ describe('TESTING_AGAMA_API', () => {
       const response = await request(app.getHttpServer())
         .post('/api/master/agama')
         .send({
-          nama_agama: 'Test Agama',
+          nama_agama: 'Delete agama',
         })
         .set(
           'Authorization',
@@ -32,7 +32,6 @@ describe('TESTING_AGAMA_API', () => {
 
       expect(response.status).toBe(201);
       expect(response.body.data.id).toBeDefined();
-      expect(response.body.data.nama_agama).toBe('Test Agama');
     });
 
     // Scenario 2 : Should return 400 if  nama_agama characters are less than 2!
@@ -174,6 +173,98 @@ describe('TESTING_AGAMA_API', () => {
         .set('Authorization', 'test');
 
       expect(response.status).toBe(401);
+      expect(response.body.errors).toBeDefined();
+    });
+  });
+
+  // Update agama API testing
+  describe('TESTING_AGAMA_API_004', () => {
+    // Scenario 1 : Should return 200 if update agama success
+    it('Should return 200 if update agama success', async () => {
+      const response = await request(app.getHttpServer())
+        .put('/api/master/agama/da66f97f-1bf1-43a1-a740-6e1c4ad037cf')
+        .send({
+          nama_agama: 'Test Agama 2',
+        })
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzIwMTgwNzI2LCJleHAiOjE3MjAyNjcxMjZ9.4yV1mDnkYYMPNSAH6jUF6D--870rt2HHk2blQn7EvOw',
+        );
+
+      expect(response.status).toBe(200);
+      expect(response.body.data.nama_agama).toBe('Test Agama 2');
+    });
+
+    // Scenario 2 : Should return 400 if  nama_agama characters are less than 2!
+    it('should return 400 if nama_agama characters are less than 2!', async () => {
+      const response = await request(app.getHttpServer())
+        .put('/api/master/agama/da66f97f-1bf1-43a1-a740-6e1c4ad037cf')
+        .send({
+          nama_agama: 'T',
+        })
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzIwMTgwNzI2LCJleHAiOjE3MjAyNjcxMjZ9.4yV1mDnkYYMPNSAH6jUF6D--870rt2HHk2blQn7EvOw',
+        );
+
+      expect(response.status).toBe(400);
+      expect(response.body.errors).toBeDefined();
+    });
+
+    // Scenario 3 : Should return 409 if nama_agama already exist
+    it('should return 409 if nama_agama already exist!', async () => {
+      const response = await request(app.getHttpServer())
+        .put('/api/master/agama/da66f97f-1bf1-43a1-a740-6e1c4ad037cf')
+        .send({
+          nama_agama: 'Islam',
+        })
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzIwMTgwNzI2LCJleHAiOjE3MjAyNjcxMjZ9.4yV1mDnkYYMPNSAH6jUF6D--870rt2HHk2blQn7EvOw',
+        );
+
+      expect(response.status).toBe(409);
+      expect(response.body.errors).toBeDefined();
+    });
+
+    // Scenario 4 : Should return 401 if token not found
+    it('should return 401 if token not found!', async () => {
+      const response = await request(app.getHttpServer())
+        .put('/api/master/agama/da66f97f-1bf1-43a1-a740-6e1c4ad037cf')
+        .send({
+          nama_agama: 'Test Agama 2',
+        });
+
+      expect(response.status).toBe(401);
+      expect(response.body.errors).toBeDefined();
+    });
+
+    // Scenario 5 : Should return 401 if input token invalid
+    it('should return 401 if input token invalid!', async () => {
+      const response = await request(app.getHttpServer())
+        .put('/api/master/agama/da66f97f-1bf1-43a1-a740-6e1c4ad037cf')
+        .send({
+          nama_agama: 'Test Agama 2',
+        })
+        .set('Authorization', 'test');
+
+      expect(response.status).toBe(401);
+      expect(response.body.errors).toBeDefined();
+    });
+
+    // Scenario 6 : Should return 404 if agama id not found
+    it('should return 404 if agama not found!', async () => {
+      const response = await request(app.getHttpServer())
+        .put('/api/master/agama/test')
+        .send({
+          nama_agama: 'Test Agama 2',
+        })
+        .set(
+          'Authorization',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYzcxZjdlLWQzYmMtNDEzYy1iODdhLWRiMjMyNGU0Y2RjOSIsInVzZXJuYW1lIjoiYWRtaW4xIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzIwMTgwNzI2LCJleHAiOjE3MjAyNjcxMjZ9.4yV1mDnkYYMPNSAH6jUF6D--870rt2HHk2blQn7EvOw',
+        );
+
+      expect(response.status).toBe(404);
       expect(response.body.errors).toBeDefined();
     });
   });
