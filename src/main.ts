@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+// Main
 async function main() {
   const app = await NestFactory.create(AppModule, {
     cors: true,
