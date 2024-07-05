@@ -1,6 +1,6 @@
-import { Guru } from 'src/api/guru/entities/guru.entity';
-import { Siswa } from 'src/api/siswa/entities/siswa.entity';
-import { Jurusan } from 'src/api/master/jurusan/entities/jurusan.entity';
+import { Guru } from '../../../api/guru/entities/guru.entity';
+import { Siswa } from '../../../api/siswa/entities/siswa.entity';
+import { Jurusan } from '../../../api/master/jurusan/entities/jurusan.entity';
 import {
   Column,
   CreateDateColumn,

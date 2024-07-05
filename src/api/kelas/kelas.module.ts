@@ -4,7 +4,7 @@ import { UsersModule } from '../users/users.module';
 import { KelasService } from './kelas.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { KelasController } from './kelas.controller';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Kelas]), UsersModule],

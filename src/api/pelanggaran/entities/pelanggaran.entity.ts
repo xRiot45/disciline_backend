@@ -1,5 +1,5 @@
-import { Siswa } from 'src/api/siswa/entities/siswa.entity';
-import { TipePelanggaran } from 'src/api/master/tipe-pelanggaran/entities/tipe-pelanggaran.entity';
+import { Siswa } from '../../../api/siswa/entities/siswa.entity';
+import { TipePelanggaran } from '../../../api/master/tipe-pelanggaran/entities/tipe-pelanggaran.entity';
 import {
   Column,
   CreateDateColumn,

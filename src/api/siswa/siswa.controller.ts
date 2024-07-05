@@ -1,7 +1,7 @@
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { AdminGuard } from 'src/common/guard/admin.guard';
+import { AuthGuard } from '../../common/guard/auth.guard';
+import { AdminGuard } from '../../common/guard/admin.guard';
+import { WebResponse } from '../../common/dto/web.dto';
 import { SiswaService } from './siswa.service';
-import { WebResponse } from 'src/common/dto/web.dto';
 import { SiswaRequest, SiswaResponse } from './dto/siswa.dto';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {

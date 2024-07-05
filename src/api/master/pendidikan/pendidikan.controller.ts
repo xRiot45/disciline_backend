@@ -1,6 +1,6 @@
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { AdminGuard } from 'src/common/guard/admin.guard';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { AuthGuard } from '../../../common/guard/auth.guard';
+import { AdminGuard } from '../../../common/guard/admin.guard';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { PendidikanService } from './pendidikan.service';
 import { PendidikanRequest, PendidikanResponse } from './dto/pendidikan.dto';
 import {

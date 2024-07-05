@@ -4,7 +4,7 @@ import { GuruService } from './guru.service';
 import { UsersModule } from '../users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GuruController } from './guru.controller';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Guru]), UsersModule],

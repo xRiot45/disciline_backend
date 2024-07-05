@@ -1,6 +1,6 @@
-import { Kelas } from 'src/api/kelas/entities/kelas.entity';
-import { Agama } from 'src/api/master/agama/entities/agama.entity';
-import { Pelanggaran } from 'src/api/pelanggaran/entities/pelanggaran.entity';
+import { Kelas } from '../../../api/kelas/entities/kelas.entity';
+import { Agama } from '../../../api/master/agama/entities/agama.entity';
+import { Pelanggaran } from '../../../api/pelanggaran/entities/pelanggaran.entity';
 import {
   Column,
   CreateDateColumn,

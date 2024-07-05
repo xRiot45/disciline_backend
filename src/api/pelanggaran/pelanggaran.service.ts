@@ -2,7 +2,7 @@ import { Siswa } from '../siswa/entities/siswa.entity';
 import { Pelanggaran } from './entities/pelanggaran.entity';
 import { EntityManager } from 'typeorm';
 import { TipePelanggaran } from '../master/tipe-pelanggaran/entities/tipe-pelanggaran.entity';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 import { PelanggaranValidation } from './pelanggaran.validation';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PelanggaranRequest, PelanggaranResponse } from './dto/pelanggaran.dto';

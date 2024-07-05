@@ -1,10 +1,10 @@
 import { Guru } from '../guru/entities/guru.entity';
 import { Kelas } from './entities/kelas.entity';
 import { Jurusan } from '../master/jurusan/entities/jurusan.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { KelasValidation } from './kelas.validation';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 import { KelasRequest, KelasResponse } from './dto/kelas.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 

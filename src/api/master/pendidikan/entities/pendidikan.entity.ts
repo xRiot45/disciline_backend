@@ -1,4 +1,4 @@
-import { Guru } from 'src/api/guru/entities/guru.entity';
+import { Guru } from '../../../../api/guru/entities/guru.entity';
 import {
   Column,
   CreateDateColumn,

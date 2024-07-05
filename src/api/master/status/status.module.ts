@@ -1,10 +1,10 @@
 import { Status } from './entities/status.entity';
 import { Module } from '@nestjs/common';
-import { UsersModule } from 'src/api/users/users.module';
+import { UsersModule } from '../../../api/users/users.module';
 import { StatusService } from './status.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StatusController } from './status.controller';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Status]), UsersModule],

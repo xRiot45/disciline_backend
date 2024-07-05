@@ -1,6 +1,6 @@
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { AdminGuard } from 'src/common/guard/admin.guard';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { AuthGuard } from '../../../common/guard/auth.guard';
+import { AdminGuard } from '../../../common/guard/admin.guard';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { JurusanService } from './jurusan.service';
 import { JurusanRequest, JurusanResponse } from './dto/jurusan.dto';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';

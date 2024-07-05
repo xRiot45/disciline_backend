@@ -1,7 +1,8 @@
-import { Agama } from 'src/api/master/agama/entities/agama.entity';
-import { Status } from 'src/api/master/status/entities/status.entity';
-import { Jabatan } from 'src/api/master/jabatan/entities/jabatan.entity';
-import { Golongan } from 'src/api/master/golongan/entities/golongan.entity';
+import { Agama } from '../../../api/master/agama/entities/agama.entity';
+import { Kelas } from '../../../api/kelas/entities/kelas.entity';
+import { Status } from '../../../api/master/status/entities/status.entity';
+import { Jabatan } from '../../../api/master/jabatan/entities/jabatan.entity';
+import { Golongan } from '../../../api/master/golongan/entities/golongan.entity';
 import {
   Column,
   CreateDateColumn,
@@ -12,7 +13,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Kelas } from 'src/api/kelas/entities/kelas.entity';
 
 @Entity()
 export class Guru {

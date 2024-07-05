@@ -1,5 +1,5 @@
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { AdminGuard } from 'src/common/guard/admin.guard';
+import { AuthGuard } from '../../common/guard/auth.guard';
+import { AdminGuard } from '../../common/guard/admin.guard';
 import { PelanggaranService } from './pelanggaran.service';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { PelanggaranRequest, PelanggaranResponse } from './dto/pelanggaran.dto';

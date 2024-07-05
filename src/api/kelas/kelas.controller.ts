@@ -1,5 +1,5 @@
-import { AuthGuard } from 'src/common/guard/auth.guard';
-import { AdminGuard } from 'src/common/guard/admin.guard';
+import { AuthGuard } from '../../common/guard/auth.guard';
+import { AdminGuard } from '../../common/guard/admin.guard';
 import { KelasService } from './kelas.service';
 import { KelasRequest, KelasResponse } from './dto/kelas.dto';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';

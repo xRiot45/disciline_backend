@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from 'src/api/users/users.module';
+import { UsersModule } from '../../../api/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TipePelanggaran } from './entities/tipe-pelanggaran.entity';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { TipePelanggaranService } from './tipe-pelanggaran.service';
 import { TipePelanggaranController } from './tipe-pelanggaran.controller';
 

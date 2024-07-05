@@ -1,7 +1,7 @@
 import { Golongan } from './entities/golongan.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { GolonganValidation } from './golongan.validation';
 import { GolonganRequest, GolonganResponse } from './dto/golongan.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';

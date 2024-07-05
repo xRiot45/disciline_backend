@@ -1,7 +1,7 @@
 import { Jabatan } from './entities/jabatan.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { JabatanValidation } from './jabatan.validation';
 import { JabatanRequest, JabatanResponse } from './dto/jabatan.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';

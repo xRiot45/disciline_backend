@@ -1,7 +1,7 @@
 import { Pendidikan } from './entities/pendidikan.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { PendidikanValidation } from './pendidikan.validation';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PendidikanRequest, PendidikanResponse } from './dto/pendidikan.dto';

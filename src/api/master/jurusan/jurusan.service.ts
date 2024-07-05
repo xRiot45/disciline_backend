@@ -1,7 +1,7 @@
 import { Jurusan } from './entities/jurusan.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { JurusanValidation } from './jurusan.validation';
 import { JurusanRequest, JurusanResponse } from './dto/jurusan.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';

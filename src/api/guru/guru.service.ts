@@ -3,10 +3,10 @@ import { Agama } from '../master/agama/entities/agama.entity';
 import { Status } from '../master/status/entities/status.entity';
 import { Jabatan } from '../master/jabatan/entities/jabatan.entity';
 import { Golongan } from '../master/golongan/entities/golongan.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { GuruValidation } from './guru.validation';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 import { GuruRequest, GuruResponse } from './dto/guru.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 

@@ -1,4 +1,4 @@
-import { Pelanggaran } from 'src/api/pelanggaran/entities/pelanggaran.entity';
+import { Pelanggaran } from '../../../../api/pelanggaran/entities/pelanggaran.entity';
 import {
   Column,
   CreateDateColumn,

@@ -1,8 +1,8 @@
 import { Status } from './entities/status.entity';
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { StatusValidation } from './status.validation';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { StatusRequest, StatusResponse } from './dto/status.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 

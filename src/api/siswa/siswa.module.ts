@@ -4,7 +4,7 @@ import { UsersModule } from '../users/users.module';
 import { SiswaService } from './siswa.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SiswaController } from './siswa.controller';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Siswa]), UsersModule],

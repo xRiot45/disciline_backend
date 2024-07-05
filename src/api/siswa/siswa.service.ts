@@ -1,12 +1,12 @@
 import { Kelas } from '../kelas/entities/kelas.entity';
 import { Siswa } from './entities/siswa.entity';
 import { Agama } from '../master/agama/entities/agama.entity';
+import { WebResponse } from '../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { SiswaValidation } from './siswa.validation';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../common/validation/validation.service';
 import { SiswaRequest, SiswaResponse } from './dto/siswa.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { WebResponse } from 'src/common/dto/web.dto';
 
 @Injectable()
 export class SiswaService {

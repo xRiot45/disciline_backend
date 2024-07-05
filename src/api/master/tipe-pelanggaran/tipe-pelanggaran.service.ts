@@ -1,7 +1,7 @@
-import { WebResponse } from 'src/common/dto/web.dto';
+import { WebResponse } from '../../../common/dto/web.dto';
 import { EntityManager } from 'typeorm';
 import { TipePelanggaran } from './entities/tipe-pelanggaran.entity';
-import { ValidationService } from 'src/common/validation/validation.service';
+import { ValidationService } from '../../../common/validation/validation.service';
 import { TipePelanggaranValidation } from './tipe-pelanggaran.validation';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import {

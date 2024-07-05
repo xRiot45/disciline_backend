@@ -1,4 +1,4 @@
-import { Kelas } from 'src/api/kelas/entities/kelas.entity';
+import { Kelas } from '../../../../api/kelas/entities/kelas.entity';
 import {
   Column,
   CreateDateColumn,
