@@ -6,6 +6,7 @@ import { ValidationService } from '../../../common/validation/validation.service
 import { AgamaRequest, AgamaResponse } from './dto/agama.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
+// Provider adalah salah satu fitur yang paling penting di NestJS yang memungkinkan kita untuk membuat class yang dapat diinject atau digunakan ke dalam class lain. Dalam hal ini, kita membuat AgamaService yang akan digunakan untuk mengakses database dan melakukan operasi CRUD terhadap tabel agama.
 @Injectable()
 export class AgamaService {
   constructor(

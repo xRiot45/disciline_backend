@@ -18,6 +18,9 @@ import {
 @ApiTags('Agama')
 @Controller('/api/master/agama')
 export class AgamaController {
+  // Ini merupakan dependency injection yang dilakukan oleh NestJS. Dependency injection adalah teknik yang digunakan untuk memasukkan dependency ke dalam class. Dalam hal ini, kita memasukkan AgamaService ke dalam AgamaController melalui constructor. Dengan demikian, kita bisa menggunakan semua method yang ada di AgamaService di dalam AgamaController.
+
+  // Constructor adalah method khusus yang akan dijalankan ketika class diinisialisasi. Dalam hal ini, kita menggunakan constructor untuk memasukkan AgamaService ke dalam AgamaController.
   constructor(private readonly agamaService: AgamaService) {}
 
   @Post()
